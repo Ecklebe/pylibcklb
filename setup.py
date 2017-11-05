@@ -26,6 +26,7 @@ setup(name='pylibcklb',
       install_requires=[
           'lxml',
           'PyQt5',
+          'markdown2',
       ],
       include_package_data=True,
       zip_safe=False)
