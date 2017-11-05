@@ -11,4 +11,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/tu-braunschweig-ifr/Editor_for_OpenSCENARIO/compare/v0.1.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.1.0...master
