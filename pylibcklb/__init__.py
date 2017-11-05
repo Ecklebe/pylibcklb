@@ -12,3 +12,6 @@ from .version import __version__
 from .ClassLibrary import *
 from .FunctionLibrary import *
 from .math_functions import *
+from .qt5_classes import *
+from .qt5_functions import *
+from .lxml_functions import *
