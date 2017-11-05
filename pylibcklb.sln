@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pylibcklb", "pylibcklb.pyproj", "{C9FD6B2B-CA9C-46B2-852F-2D4A4D2E9209}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9FD6B2B-CA9C-46B2-852F-2D4A4D2E9209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9FD6B2B-CA9C-46B2-852F-2D4A4D2E9209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D4CD8D4-4A6F-43C9-8C06-B2297A97D3B7}
+	EndGlobalSection
+EndGlobal
