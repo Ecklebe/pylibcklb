@@ -24,8 +24,6 @@ setup(name='pylibcklb',
       license='MIT',
       packages=['pylibcklb'],
       install_requires=[
-            'traceback',
-            'abc',
             'lxml',
             'pyqt5>=5.8.2',
             'markdown2',
