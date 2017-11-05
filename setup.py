@@ -27,6 +27,7 @@ setup(name='pylibcklb',
           'lxml',
           'PyQt5',
           'markdown2',
+          'numpy',
       ],
       include_package_data=True,
       zip_safe=False)
