@@ -24,8 +24,6 @@ setup(name='pylibcklb',
       license='MIT',
       packages=['pylibcklb'],
       install_requires=[
-            'os',
-            'sys',
             'traceback',
             'abc',
             'lxml',
