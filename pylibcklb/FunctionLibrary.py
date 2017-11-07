@@ -87,3 +87,23 @@ def IsThereAKnownPrefix(text, ListOfPrefixes):
         return retValue
     else:                 
         return None
+
+## Documentation for a method to create an directory
+#   @param dir The directory to create
+#   @return The returned value is true to signalize that the directory is created
+def CreateDir(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    return True
+
+## Documentation for a method to let the user search the correct directory to load a file
+#   @code 
+#   ret = CreateFile('Some Text', 'Path2Dir\Filename.txt')
+#   @endcode
+#   @param FileContent The content to save into the new file
+#   @param Dir The directory to create the file, the directory parameter must have included the filename and filetype
+def CreateFile(FileContent, Dir):
+    os.makedirs(os.path.dirname(Dir), exist_ok=True)
+    with open(Dir, "w") as f:
+        f.write(str(FileContent))
+    return True
