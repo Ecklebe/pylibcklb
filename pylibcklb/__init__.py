@@ -22,7 +22,7 @@
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from .version import __version__
+from .version import *
 from .ClassLibrary import *
 from .FunctionLibrary import *
 from .math_functions import *
