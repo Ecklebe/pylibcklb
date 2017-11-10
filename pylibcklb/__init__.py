@@ -29,3 +29,4 @@ from .math_functions import *
 from .qt5_classes import *
 from .qt5_functions import *
 from .lxml_functions import *
+from .metadata import *
