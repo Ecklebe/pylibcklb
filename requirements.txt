@@ -1,0 +1,4 @@
+lxml
+pyqt5>=5.8.2
+markdown2
+numpy
