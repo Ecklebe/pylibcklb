@@ -1,0 +1,51 @@
+stages:
+  - test
+  - build
+  - release
+
+variables:
+  GITLAB_ACCESS_TOKEN: "$GITLAB_ACCESS_TOKEN"
+
+run_unit_tests_python_3:
+  stage: test
+  tags:
+    - linux
+    - python
+  script:
+    - python3 setup.py test
+
+pyinstaller_linux:
+  stage: build
+  only:
+    - master
+  tags:
+    - linux
+    - python
+  script:
+    - python3 builder.py build pyinstaller_linux
+  artifacts:
+    paths:
+      - build/gitlab_build_scripts/*
+
+pyinstaller_windows:
+  stage: build
+  only:
+    - master
+  tags:
+    - windows
+    - python
+  script:
+    - python builder.py build pyinstaller_windows
+  artifacts:
+    paths:
+      - build/gitlab_build_scripts/*
+
+upload_release_to_gitlab:
+  stage: release
+  only:
+    - master
+  tags:
+    - python
+    - linux
+  script:
+    - python3 builder.py gitlab-release
