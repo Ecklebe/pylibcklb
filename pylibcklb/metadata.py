@@ -39,7 +39,7 @@ class GitRepository:
     Class that stores information about the git repository sites used by this project
     """
 
-    repository_name = "pylibcklb "
+    repository_name = "pylibcklb"
     """
     The name of the repository
     """
