@@ -1,3 +1,5 @@
+image: python:3.6
+
 stages:
   - test
   - build
@@ -6,13 +8,16 @@ stages:
 variables:
   GITLAB_ACCESS_TOKEN: "$GITLAB_ACCESS_TOKEN"
 
+before_script:
+   - python setup.py install
+
 run_unit_tests_python_3:
   stage: test
   tags:
     - linux
     - python
   script:
-    - python3 setup.py test
+    - python setup.py test
 
 pyinstaller_linux:
   stage: build
@@ -22,7 +27,7 @@ pyinstaller_linux:
     - linux
     - python
   script:
-    - python3 builder.py build pyinstaller_linux
+    - python builder.py build pyinstaller_linux
   artifacts:
     paths:
       - build/gitlab_build_scripts/*
@@ -48,4 +53,4 @@ upload_release_to_gitlab:
     - python
     - linux
   script:
-    - python3 builder.py gitlab-release
+    - python builder.py gitlab-release
