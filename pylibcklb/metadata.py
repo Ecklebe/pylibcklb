@@ -32,7 +32,7 @@
 """
 The metadata is stored here. It can be used by any other module in this project this way
 """
-from version import __version__
+from .version import __version__
 
 class GitRepository:
     """
