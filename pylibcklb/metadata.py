@@ -117,12 +117,12 @@ class Variables:
     The list trove classifiers applicable to this project
     """
 
-    install_requires = ['lxml', 'pyqt5>=5.8.2', 'markdown2', 'numpy']
+    install_requires = ["lxml", "pyqt5>=5.8.2", "markdown2", "numpy"]
     """
     Python Packaging Index dependencies
     """
 
-    extras_require = {}
+    extras_require = {"gui": ["PyQt5"]}
     """
     Optional dependencies for Pypi
     """
