@@ -9,8 +9,8 @@ variables:
   GITLAB_ACCESS_TOKEN: "$GITLAB_ACCESS_TOKEN"
 
 before_script:
-	- python --version
-	- pip install -r requirements.txt
+  - python --version
+  - pip install -r requirements.txt
 
 run_unit_tests_python_3:
   stage: test
