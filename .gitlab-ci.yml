@@ -1,17 +1,8 @@
 image: python:3.6
 
 stages:
-  - requirements
   - test
   - install   
-
-installation_of_requirements:
-  stage: requirements
-  script:
-    - uname -i
-    - pip install SIP
-    - pip install pyqt5
-    - pip install -r requirements.txt
 
 run_unit_tests_python_3:
   stage: test
