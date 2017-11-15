@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2017-11-14
+### Added
+- Add first work on script library for installer like pyinstaller
+
 ## [0.3.0] - 2017-11-10
 ### Added
 - Add LGPLv3 License 
@@ -22,5 +26,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Init commit and push of different elements to new repository
 
 [Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.3.0...master
+[0.4.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.3.0...v0.4.0
 [0.3.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.2.0...v0.3.0
 [0.2.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.1.0...v0.2.0
