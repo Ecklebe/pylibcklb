@@ -1,6 +1,0 @@
-lxml
-SIP
-PyQt5>=5.8.2
-markdown2
-numpy
-https://github.com/pyinstaller/pyinstaller/archive/develop.zip
