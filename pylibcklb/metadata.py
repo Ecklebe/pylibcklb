@@ -122,12 +122,12 @@ class Variables:
     Python Packaging Index dependencies
     """
 
-    extras_require = {}
+    extras_require = []
     """
     Optional dependencies for Pypi
     """
 
-    test_require = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "https://github.com/pyinstaller/pyinstaller/archive/develop.zip", "nose"]
+    test_require = ["nose"]
     """
     Optional dependencies for test
     """
