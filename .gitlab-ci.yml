@@ -1,25 +1,22 @@
-image: python:3.6
+image: python:3.6-windowsservercore
 
 stages:
+  - requirements
   - test
   - install   
 
-before_script:
-  - pip install -r requirements.txt
+installation_of_requirements:
+  stage: requirements
+  script:
+    - pip install -r requirements.txt
 
 run_unit_tests_python_3:
   stage: test
-  tags:
-    - linux
-    - python
   script:
     - python setup.py test
 
 
 run_install_of_package:
   stage: install
-  tags:
-    - linux
-    - python
   script:
     - python setup.py install
