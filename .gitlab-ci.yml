@@ -1,4 +1,4 @@
-image: python:3.6-alpine
+image: alpine:3.6
 
 stages:
   - requirements
@@ -8,6 +8,8 @@ stages:
 installation_of_requirements:
   stage: requirements
   script:
+    - arch
+    - apt-get install -y python-dev python-pip
     - pip3 install SIP
     - pip3 install pyqt5
     - pip install -r requirements.txt
