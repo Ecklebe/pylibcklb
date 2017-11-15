@@ -1,4 +1,4 @@
-image: alpine:3.6
+image: python:3.6
 
 stages:
   - requirements
@@ -9,7 +9,6 @@ installation_of_requirements:
   stage: requirements
   script:
     - uname -i
-    - apk update && apk add python python-dev python-pip
     - pip install SIP
     - pip install pyqt5
     - pip install -r requirements.txt
