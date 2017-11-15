@@ -1,5 +1,5 @@
 lxml
-pyqt5 >= 5.8.2
+pyqt5
 markdown2
 numpy
 https://github.com/pyinstaller/pyinstaller/archive/develop.zip
