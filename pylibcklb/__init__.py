@@ -21,13 +21,3 @@
 #               You should have received a copy of the GNU Lesser General Public License
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-from .version import *
-from .ClassLibrary import *
-from .FunctionLibrary import *
-from .math_functions import *
-from .qt5_classes import *
-from .qt5_functions import *
-from .lxml_functions import *
-from .metadata import *
-from .InstallerScriptLibrary import *
