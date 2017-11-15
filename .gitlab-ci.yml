@@ -2,11 +2,7 @@ image: python:3.6
 
 stages:
   - test
-  - build
-  - release
-
-variables:
-  GITLAB_ACCESS_TOKEN: "$GITLAB_ACCESS_TOKEN"
+  - install   
 
 before_script:
   - python --version
@@ -21,38 +17,11 @@ run_unit_tests_python_3:
   script:
     - python setup.py test
 
-pyinstaller_linux:
-  stage: build
-  only:
-    - master
+
+run_install_of_package:
+  stage: install
   tags:
     - linux
     - python
   script:
-    - python builder.py build pyinstaller_linux
-  artifacts:
-    paths:
-      - build/gitlab_build_scripts/*
-
-pyinstaller_windows:
-  stage: build
-  only:
-    - master
-  tags:
-    - windows
-    - python
-  script:
-    - python builder.py build pyinstaller_windows
-  artifacts:
-    paths:
-      - build/gitlab_build_scripts/*
-
-upload_release_to_gitlab:
-  stage: release
-  only:
-    - master
-  tags:
-    - python
-    - linux
-  script:
-    - python builder.py gitlab-release
+    - python setup.py install
