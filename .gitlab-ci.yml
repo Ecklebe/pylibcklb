@@ -9,9 +9,9 @@ installation_of_requirements:
   stage: requirements
   script:
     - uname -i
-    - apt-get install -y python-dev python-pip
-    - pip3 install SIP
-    - pip3 install pyqt5
+    - apk update && apk add python python-dev python-pip
+    - pip install SIP
+    - pip install pyqt5
     - pip install -r requirements.txt
 
 run_unit_tests_python_3:
