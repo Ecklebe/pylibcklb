@@ -8,7 +8,7 @@ stages:
 installation_of_requirements:
   stage: requirements
   script:
-    - arch
+    - uname -i
     - apt-get install -y python-dev python-pip
     - pip3 install SIP
     - pip3 install pyqt5
