@@ -50,22 +50,6 @@ def readme():
 
 exec(open('pylibcklb/version.py').read())
 
-# @note Found at: https://gitlab.namibsun.net/namboy94/comunio-manager/blob/master/setup.py
-def find_scripts():
-    """
-    Returns a list of scripts in the bin directory
-
-    :return: the list of scripts
-    """
-    try:
-        scripts = []
-        for file_name in os.listdir("pylibcklb"):
-            if not file_name == "__init__.py" and os.path.isfile(os.path.join("pylibcklb", file_name)):
-                scripts.append(os.path.join("pylibcklb", file_name))
-        return scripts
-    except OSError:
-        return []
-
 setup(name=Variables.name,
       version=__version__,
       description=Variables.description,
@@ -77,11 +61,12 @@ setup(name=Variables.name,
       author_email=Variables.author_email,
       license=Variables.license,
       packages=find_packages(),
+      python_requires='>=3',
       setup_requires=Variables.install_requires,
       install_requires=Variables.install_requires,
       extras_require=Variables.extras_require,
       test_suite='nose.collector',
-      tests_require=Variables.install_requires,
-      scripts=find_scripts(),
+      tests_require=Variables.test_require,
+      #scripts=find_scripts(),
       include_package_data=True,
       zip_safe=False)

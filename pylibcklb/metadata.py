@@ -109,7 +109,7 @@ class Variables:
     classifiers = [
 
         "Natural Language :: English",
-        "Programming Language :: Python",
+        'Programming Language :: Python :: 3.6',
         "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)"
 
     ]
@@ -117,7 +117,7 @@ class Variables:
     The list trove classifiers applicable to this project
     """
 
-    install_requires = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "https://github.com/pyinstaller/pyinstaller/archive/develop.zip", "nose"]
+    install_requires = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "https://github.com/pyinstaller/pyinstaller/archive/develop.zip"]
     """
     Python Packaging Index dependencies
     """
@@ -125,6 +125,11 @@ class Variables:
     extras_require = {}
     """
     Optional dependencies for Pypi
+    """
+
+    test_require = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "https://github.com/pyinstaller/pyinstaller/archive/develop.zip", "nose"]
+    """
+    Optional dependencies for test
     """
 
     name = General.project_name
