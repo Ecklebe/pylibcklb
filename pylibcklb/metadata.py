@@ -117,7 +117,7 @@ class Variables:
     The list trove classifiers applicable to this project
     """
 
-    install_requires = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "https://github.com/pyinstaller/pyinstaller/archive/develop.zip"]
+    install_requires = ["lxml", "SIP", "pyqt5>=5.8.2", "markdown2", "numpy", "pyinstaller"]
     """
     Python Packaging Index dependencies
     """
