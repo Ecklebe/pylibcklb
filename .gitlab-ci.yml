@@ -8,6 +8,8 @@ stages:
 installation_of_requirements:
   stage: requirements
   script:
+    - pip install SIP
+    - pip install pyqt5
     - pip install -r requirements.txt
 
 run_unit_tests_python_3:
