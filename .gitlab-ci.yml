@@ -1,18 +1,30 @@
 image: python:3.6
 
 stages:
+  - build
   - test
   - install   
   
-run_unit_tests_with_coverage:
+run_build:
+  stage: build
+  tags:
+    - linux
+    - python
+  script:
+    - python setup.py build
+    
+run_unit_tests:
   stage: test
   tags:
     - linux
     - python
   script:
-    - python setup.py nosetests --with-coverage --cover-package=pylibcklb --cover-branches --cover-erase --cover-html --cover-inclusive
+    - python setup.py test
     
 run_install_of_package:
   stage: install
+  tags:
+    - linux
+    - python
   script:
     - python setup.py install
