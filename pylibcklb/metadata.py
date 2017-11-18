@@ -117,7 +117,7 @@ class Variables:
     The list trove classifiers applicable to this project
     """
 
-    install_requires = ["lxml", "SIP", "markdown2", "numpy", "pyinstaller"]
+    install_requires = ["lxml", "markdown2", "numpy", "pyinstaller"]
     """
     Python Packaging Index dependencies
     """
