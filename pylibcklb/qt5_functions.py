@@ -164,11 +164,10 @@ def CreateQuestionMessage(SELF, QUESTION_MESSAGE, QUESTION_INFORMATIVE_MESSAGE, 
     return CreateMessageBox(SELF, QUESTION_MESSAGE, QUESTION_INFORMATIVE_MESSAGE, QUESTION_DETAILED_MESSAGE, MESSAGE_TYPE = 'QUESTION')
 
 ## Documenation of a method to set the drag and drop mode of a qtreeview
-# @param self The object pointer
 # @param treeview a view with the type qtreeview
 # @param expr The Mode as string that should be set: 'DragOnly',
 # 'DropOnly', 'DropAndDrop'
-def SetDragDropMode(self, treeview, expr='NoDragDrop'):
+def SetDragDropMode(treeview, expr='NoDragDrop'):
     Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if expr == 'DragOnly':
         treeview.setDragDropMode(QAbstractItemView.DragOnly)
