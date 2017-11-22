@@ -5,6 +5,7 @@
 # @date		    02.11.2017
 # @version	    0.1.0
 # @bug          No bugs at the moment.
+#
 # @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
 #

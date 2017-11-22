@@ -15,7 +15,7 @@
 #
 # @warning      The functions need a self pointer of the qt application! 
 #
-# @copyright    Filtergenerator for ADTF
+# @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
 #
 #               This program is free software: you can redistribute it and/or modify

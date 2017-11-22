@@ -14,7 +14,7 @@
 #
 # @warning      No warnings at the moment.
 #
-# @copyright    Filtergenerator for ADTF
+# @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
 #
 #               This program is free software: you can redistribute it and/or modify
@@ -45,24 +45,24 @@ Debug = cDebug(cDebug.LEVEL_ZERO)
 # The following code explaines the example usage:
 # @code
 ## Creates an thread to fix the problem with an frozen gui while searching in the directory
-#self.Thread_XMLFilesFromDir = QT5CL.GetThread_XMLFilesFromDir(CatalogsPath, FileType)
+#self.Thread_FilesFromDir = QT5CL.cGetThread_FilesFromDir(CatalogsPath, FileType)
 #            
 ## Next we need to connect the events from that thread to functions we want
 ## to be run when those signals get fired       
-#self.Thread_XMLFilesFromDir.get_dir.connect(self.AddDir2ListWidget)
-#self.Thread_XMLFilesFromDir.finished.connect(self.done)
+#self.Thread_FilesFromDir.get_dir.connect(self.AddDir2ListWidget)
+#self.Thread_FilesFromDir.finished.connect(self.done)
 #
 ## We have all the events we need connected we can start the thread
 #self.Thread_XMLFilesFromDir.start()
 ## At this point we want to allow user to stop/terminate the thread so we enable that button
 #self.ButtonLoadCatalogs_Stop.setEnabled(True)
 ## And we connect the click of that button to the built in terminate method that all QThread instances have
-#self.ButtonLoadCatalogs_Stop.clicked.connect(self.Thread_XMLFilesFromDir.terminate)
+#self.ButtonLoadCatalogs_Stop.clicked.connect(self.Thread_FilesFromDir.terminate)
 ## We don't want to enable user to start another thread while this one is running so we disable the start button.
 #self.ButtonLoadCatalogs_Start.setEnabled(False)
 # @endcode
 #  @param QThread Inherit from QThread
-class GetThread_XMLFilesFromDir(QThread):
+class cGetThread_FilesFromDir(QThread):
 
     ## Documentation of the signals to throw away to listening functions
     get_dir = pyqtSignal('QString')
@@ -99,10 +99,19 @@ class GetThread_XMLFilesFromDir(QThread):
                 self.msleep(100)     
         return
 
+## Documentation for a class that handles 
+# The following code explaines the example usage:
+# @code
+#self.ToolBar = cToolbar(self)
+#self.ToolBar.addWidget(self.SomeWidgetThatShouldBeAdded)
+# @endcode
+#  @param QToolBar Inherit from QToolBar
 class cToolbar(QToolBar):
 
     ## Documentation of the constructor
     #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the toolbar
+    #  @param visibility The visibility of the toolbar after initalize
     def __init__(self, parent, visibility=False):
         QToolBar.__init__(self, parent)
 
@@ -111,37 +120,66 @@ class cToolbar(QToolBar):
         self.setMovable(False)
         self.parent.addToolBar(Qt.TopToolBarArea, self)
         self.SetVisibility(visibility)
+        return
 
+    ## Documentation of an methode to set the visibility in the toolbar
+    #  @param self The object pointer.
+    #  @param visibility The visibility of the toolbar
     def SetVisibility(self, visibility:bool):
         if visibility == True:
             self.show()
         else: 
             self.hide()
+        return
 
+## Documentation for a class that handles the creation of undo and redo for the toolbar
+# The following code explaines the example usage:
+# @code
+#self.ToolBar_Undo = cUndoToolbar(self) 
+# @endcode
+#  @param QToolBar Inherit from QToolBar
 class cUndoToolbar(cToolbar):
 
     ## Documentation of the constructor
     #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the toolbar
+    #  @param visibility The visibility of the toolbar after initalize
     def __init__(self, parent, visibility=False):
         super(self.__class__, self).__init__(parent) 
 
-        self.undoStack = QUndoStack(self)       
+        # Create the undostack
+        self.undoStack = QUndoStack(self)      
+
+        # Create the undo action  
         self.UndoAction = self.undoStack.createUndoAction(self, self.tr("&Undo"))
         self.UndoAction.setShortcuts(QKeySequence.Undo)
+
+        # Create the redo action
         self.RedoAction = self.undoStack.createRedoAction(self, self.tr("&Redo"))
         self.RedoAction.setShortcuts(QKeySequence.Redo)
 
+        # Add the actions to the created toolbar (toolbar were created through inheritence of cToolbar)
         self.addAction(self.UndoAction)
         self.addAction(self.RedoAction)
 
+        # Set the visibility to the init state
         self.SetVisibility(visibility)
+        return
 
+    ## Documentation of an methode to get the undo stack to work on it
+    #  @param self The object pointer.
     def GetUndoStack(self):
         return self.undostack
 
+    ## Documentation of an methode to set an command to the undostack
+    #  @param self The object pointer.
+    #  @param Command The command to set into the undostack
     def AddCommand2UndoStack(self, Command:QUndoCommand):
         self.undoStack.push(Command)
 
+    ## Documentation of an methode to set easily an known element to the undostack 
+    #  @param self The object pointer.
+    #  @param Elemenet The known element where the command is known
     def AddElement2UndoStack(self, Element):
         if type(Element) is QLineEdit:
             self.undoStack.push(Command2Store_QLineEdit(Element))
@@ -149,21 +187,35 @@ class cUndoToolbar(cToolbar):
         else:
             return False
 
+## Documentation for a class that informs over the function that should be implemented when adding new commands 
+#  @param QUndoCommand Inherit from QUndoCommand
 class cUndoCommand(QUndoCommand):
     __metaclass__ = ABCMeta
 
     @abstractmethod
+    ## Documentation of the constructor
+    #  @param self The object pointer.
     def __init__(self):
+        # Call init function of inherit class
         QUndoCommand.__init__(self) 
 
+    ## Documentation of an function prototype
+    #  @param self The object pointer.
     def undo(self):
         pass
-    
+
+    ## Documentation of an function prototype
+    #  @param self The object pointer.
     def redo(self):
         pass
 
+## Documentation for a class that handles the edit of an qlineedit element
+#  @param cUndoCommand Inherit from cUndoCommand
 class cCommand2Store_QLineEdit(cUndoCommand):
 
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param LineEdit An pointer to an element of the type QLineEdit
     def __init__(self, LineEdit : QLineEdit):
         super(self.__class__, self).__init__() 
         
@@ -173,14 +225,12 @@ class cCommand2Store_QLineEdit(cUndoCommand):
         # Record the text at the time the command was created.
         self.text = LineEdit.text()
 
+    ## Documentation of the undo for the qlineedit element
+    #  @param self The object pointer.
     def undo(self):
-    
-        # Remove the text from the file and set it in the field.
-        # ...
         self.LineEdit.setText(self.text)
-    
+
+    ## Documentation of the redo for the qlineedit element
+    #  @param self The object pointer.
     def redo(self):
-    
-        # Store the text in the file and set it in the field.
-        # ...
         self.LineEdit.setText(self.text)

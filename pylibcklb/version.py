@@ -16,7 +16,7 @@
 #
 # @warning      No warnings at the moment
 #
-# @copyright    Filtergenerator for ADTF
+# @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
 #
 #               This program is free software: you can redistribute it and/or modify
@@ -33,4 +33,4 @@
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-__version__ = '0.5.3'
+__version__ = '0.5.5'
