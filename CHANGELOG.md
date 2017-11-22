@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2017-11-22
+### Added
+- new class to get thread for searching specific filetypes in directory
+- add new classes to handle toolbars and undo and redo in the toolbar 
+- add function to set drag drop mode of an qtreeview element
+
 ## [0.4.0] - 2017-11-14
 ### Added
 - Add first work on script library for installer like pyinstaller
@@ -25,7 +31,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.3.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.5.0...master
+[0.5.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.4.0...v0.5.0
 [0.4.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.3.0...v0.4.0
 [0.3.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.2.0...v0.3.0
 [0.2.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.1.0...v0.2.0

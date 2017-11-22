@@ -34,7 +34,7 @@
 import os  
 import sys
 from PyQt5 import QtWidgets
-from .ClassLibrary import cDebug 
+from pylibcklb.ClassLibrary import cDebug 
 
 Debug = cDebug(cDebug.LEVEL_ZERO)
 
@@ -163,3 +163,19 @@ def CreateInformationMessage(SELF, INFORMATION_MESSAGE, INFORMATION_INFORMATIVE_
 def CreateQuestionMessage(SELF, QUESTION_MESSAGE, QUESTION_INFORMATIVE_MESSAGE, QUESTION_DETAILED_MESSAGE = None):
     return CreateMessageBox(SELF, QUESTION_MESSAGE, QUESTION_INFORMATIVE_MESSAGE, QUESTION_DETAILED_MESSAGE, MESSAGE_TYPE = 'QUESTION')
 
+## Documenation of a method to set the drag and drop mode of a qtreeview
+# @param self The object pointer
+# @param treeview a view with the type qtreeview
+# @param expr The Mode as string that should be set: 'DragOnly',
+# 'DropOnly', 'DropAndDrop'
+def SetDragDropMode(self, treeview, expr='NoDragDrop'):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    if expr == 'DragOnly':
+        treeview.setDragDropMode(QAbstractItemView.DragOnly)
+    elif expr == 'DropOnly':
+        treeview.setDragDropMode(QAbstractItemView.DropOnly)
+    elif expr == 'DropAndDrop':
+        treeview.setDragDropMode(QAbstractItemView.DragDrop)
+    else:
+        treeview.setDragDropMode(QAbstractItemView.NoDragDrop)
+    return

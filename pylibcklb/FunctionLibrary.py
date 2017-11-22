@@ -36,7 +36,7 @@
 #
 import os  
 import sys
-from .ClassLibrary import cDebug 
+from pylibcklb.ClassLibrary import cDebug 
 
 Debug = cDebug(cDebug.LEVEL_ZERO)
 
