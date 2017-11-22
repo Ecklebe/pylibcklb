@@ -36,6 +36,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from pylibcklb.ClassLibrary import cDebug 
 from abc import ABCMeta, abstractmethod
+import os
+import sys
 
 Debug = cDebug(cDebug.LEVEL_ZERO)
 
