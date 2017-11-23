@@ -31,6 +31,7 @@
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -236,3 +237,94 @@ class cCommand2Store_QLineEdit(cUndoCommand):
     #  @param self The object pointer.
     def redo(self):
         self.LineEdit.setText(self.text)
+
+## Documentation for a class that helds all stuff for the use of an changelogbrowser
+#  @param QtWidgets.QTextBrowser Inherit from QtWidgets.QTextBrowser
+class cChangeLogBrowser(QtWidgets.QTextBrowser):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    def __init__(self, ChangeLogText=None):
+        # Call init function of inherit class
+        QtWidgets.QTextBrowser.__init__(self) 
+
+        self.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.setAutoFormatting(QtWidgets.QTextEdit.AutoNone)
+        self.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
+        self.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.setPlaceholderText("")
+        self.setObjectName("ChangeLogBrowser")
+        if ChangeLogText is not None:
+            self.setHtml(ChangeLogText)
+        #self.setMaximumSize(QtCore.QSize(950, 16777215))
+
+## Documentation for a class that helds all stuff for the use of an start screeen dialog
+#  @param QWidget Inherit from QWidget 
+class cStartScreenDialog(QWidget):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    def __init__(self, parent = None, ChangeLogText=None, WindowName=None):    
+        QWidget.__init__(self, parent)
+
+        self.setObjectName("Dialog")
+        self.resize(1000, 500)
+
+        self.verticalLayout = QtWidgets.QVBoxLayout(self)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        self.ChangeLogBrowser = cChangeLogBrowser(ChangeLogText)
+
+        self.verticalLayout.addWidget(self.ChangeLogBrowser)
+
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
+        if WindowName is not None:
+            self.setWindowTitle(WindowName)
+        self.show()
+
+    def retranslateUi(self):
+        _translate = QtCore.QCoreApplication.translate
+        self.setWindowTitle(_translate("Dialog", "Welcome"))
+
+## Documentation for a class that helds all stuff for the use of an info dialog
+#  @param QWidget Inherit from QWidget 
+class cInfoDialog(QWidget):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    def __init__(self, parent = None, ChangeLogText=None, WindowName=None):    
+        QWidget.__init__(self, parent)
+
+        self.setObjectName("Dialog")
+        self.resize(1000, 500)
+        self.setMaximumSize(QtCore.QSize(1000, 500))
+
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        self.label_2 = QtWidgets.QLabel(self)
+        self.label_2.setMaximumSize(QtCore.QSize(950, 200))
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+
+        self.ChangeLogBrowser = cChangeLogBrowser(ChangeLogText)
+        self.verticalLayout.addWidget(self.ChangeLogBrowser)
+
+        self.verticalLayout.setStretch(0, 1)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
+        if WindowName is not None:
+            self.setWindowTitle(WindowName)
+        self.show()
+
+    def retranslateUi(self):
+        _translate = QtCore.QCoreApplication.translate
+        self.setWindowTitle(_translate("Dialog", "About"))
+        self.label_2.setText(_translate("Dialog", "TextLabel"))
