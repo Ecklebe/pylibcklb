@@ -12,7 +12,7 @@
 #
 # @bug          No bugs at the moment.
 #
-# @warning      No warning at the moment.
+# @warning      Warning this code is not tested until now!!!
 #
 # @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
