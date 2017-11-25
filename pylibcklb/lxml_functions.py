@@ -35,8 +35,8 @@ import lxml
 from lxml import etree
 from .ClassLibrary import cDebug 
 from .FunctionLibrary import remove_prefix, IsThereAKnownPrefix
-
-Debug = cDebug()
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to remove all prefixes from the xml attributes.
 # Only the enum prefix will be not removed, to get the drop down

@@ -32,6 +32,8 @@
 #
 import os
 from subprocess import Popen
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 class PyInstaller:
     

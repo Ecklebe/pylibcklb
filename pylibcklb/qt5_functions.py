@@ -38,8 +38,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from pylibcklb.ClassLibrary import cDebug 
-
-Debug = cDebug(cDebug.LEVEL_ZERO)
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to let the user search the correct directory.
 #  @param self The object pointer of the the window class

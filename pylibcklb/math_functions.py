@@ -31,6 +31,8 @@
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 import numpy as np
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to get an normal random number
 # @note https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.random.normal.html

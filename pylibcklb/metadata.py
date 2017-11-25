@@ -33,6 +33,11 @@
 The metadata is stored here. It can be used by any other module in this project this way
 """
 from pylibcklb.version import __version__
+from pylibcklb.ClassLibrary import cDebug 
+
+class PackageVariables:
+
+    DebugLevel = cDebug.LEVEL_All
 
 class GitRepository:
     """
