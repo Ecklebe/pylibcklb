@@ -39,8 +39,8 @@ from pylibcklb.ClassLibrary import cDebug
 from abc import ABCMeta, abstractmethod
 import os
 import sys
-
-Debug = cDebug(cDebug.LEVEL_ZERO)
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a class that handles as thread the reading from a directory.
 # The reason for a thread is that while the programm searches in a great dir
@@ -274,8 +274,11 @@ class cStartScreenDialog(QWidget):
         self.verticalLayout.setObjectName("verticalLayout")
 
         self.ChangeLogBrowser = cChangeLogBrowser(ChangeLogText)
-
         self.verticalLayout.addWidget(self.ChangeLogBrowser)
+
+        self.checkBox_Startscreen = QtWidgets.QCheckBox(self)
+        self.checkBox_Startscreen.setObjectName("checkBox_Startscreen")
+        self.verticalLayout.addWidget(self.checkBox_Startscreen)
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
@@ -286,6 +289,7 @@ class cStartScreenDialog(QWidget):
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("Dialog", "Welcome"))
+        self.checkBox_Startscreen.setText(_translate("Dialog", "Show this message again"))
 
 ## Documentation for a class that helds all stuff for the use of an info dialog
 #  @param QWidget Inherit from QWidget 
@@ -300,10 +304,7 @@ class cInfoDialog(QWidget):
         self.resize(1000, 500)
         self.setMaximumSize(QtCore.QSize(1000, 500))
 
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-
-        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.verticalLayout.setObjectName("verticalLayout")
 
@@ -315,8 +316,11 @@ class cInfoDialog(QWidget):
         self.ChangeLogBrowser = cChangeLogBrowser(ChangeLogText)
         self.verticalLayout.addWidget(self.ChangeLogBrowser)
 
-        self.verticalLayout.setStretch(0, 1)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
+        #self.verticalLayout.setStretch(0, 1)
+
+        self.checkBox_Startscreen = QtWidgets.QCheckBox(self)
+        self.checkBox_Startscreen.setObjectName("checkBox_Startscreen")
+        self.verticalLayout.addWidget(self.checkBox_Startscreen)
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
@@ -328,3 +332,4 @@ class cInfoDialog(QWidget):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("Dialog", "About"))
         self.label_2.setText(_translate("Dialog", "TextLabel"))
+        self.checkBox_Startscreen.setText(_translate("Dialog", "Show startscreen on startup"))
