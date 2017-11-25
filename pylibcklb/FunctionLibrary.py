@@ -37,19 +37,22 @@
 import os  
 import sys
 from pylibcklb.ClassLibrary import cDebug 
-
-Debug = cDebug(cDebug.LEVEL_ZERO)
+import fileinput
+from pylibcklb.metadata import PackageVariables
+Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to get an bool from the xml string
 # @param value Value from xml string
 # @return Boolean extract from string
 def str2bool(value):
-  return value.lower() in ("True", "true")
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    return value.lower() in ("True", "true")
 
 ## Documentation of a method to load a file from a pyinstaller bundled exe
 # @note https://stackoverflow.com/questions/19669640/bundling-data-files-with-pyinstaller-2-1-and-meipass-error-onefile
 # @param relative_path The realtive path to the file
 def resource_path(relative_path):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
@@ -65,6 +68,7 @@ def resource_path(relative_path):
 # @param prefix The prefix that should be removed
 # @return String without postfix if the text and prefix are from type string, else text without changes
 def remove_prefix(text, prefix):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if ((type(text) is str) and (type(prefix) is str)):
         if not text.startswith(prefix):
             return text
@@ -78,6 +82,7 @@ def remove_prefix(text, prefix):
 # @param postfix The prefix that should be removed
 # @return String without postfix if the text and prefix are from type string, else text without changes
 def remove_postfix(text, postfix):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if ((type(text) is str) and (type(postfix) is str)):
         if not text.endswith(postfix):
             return text
@@ -106,6 +111,7 @@ def IsThereAKnownPrefix(text, ListOfPrefixes):
 #   @param dir The directory to create
 #   @return The returned value is true to signalize that the directory is created
 def CreateDir(dir):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if not os.path.exists(dir):
         os.makedirs(dir)
     return True
@@ -117,7 +123,40 @@ def CreateDir(dir):
 #   @param FileContent The content to save into the new file
 #   @param Dir The directory to create the file, the directory parameter must have included the filename and filetype
 def CreateFile(FileContent, Dir):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     os.makedirs(os.path.dirname(Dir), exist_ok=True)
     with open(Dir, "w") as f:
         f.write(str(FileContent))
     return True
+
+## Documentation for a method to save the changes of an dict back to the file for remembering on next application start
+#   @param FileDir The directory of the file
+#   @param FileName The name of the file where the dict is placed
+#   @param DictName Name of the dict as string the method should search for
+#   @param Dict The dict that should be saved back
+def SaveChangesOfDictBack2File(FileDir:str, FileName:str, DictName:str, Dict:dict):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    dir = os.path.join(FileDir, FileName)
+    # Safely read the input filename using 'with'
+    with open(dir) as f:
+        s = f.read()
+        if DictName not in s:
+            Debug.Print(Debug.LEVEL_All, '"{DictName}" not found in {FileName}.'.format(**locals()))
+            return False
+
+    ParameterValue = None
+    for line in s.splitlines():
+        if DictName in line:
+            ParameterName, ParameterValue = line.split('=')
+
+    if ParameterValue is not None:
+        old_string = ParameterValue
+        new_string = str(Dict)
+        # Safely write the changed content, if found in the file
+        with open(dir, 'w') as f:
+            Debug.Print(Debug.LEVEL_All,'Changing "{old_string}" to "{new_string}" in {dir}'.format(**locals()))
+            s = s.replace(old_string, new_string)
+            f.write(s)
+        return True
+    else:
+        return False
