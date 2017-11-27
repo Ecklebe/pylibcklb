@@ -37,7 +37,7 @@ from pylibcklb.ClassLibrary import cDebug
 
 class PackageVariables:
 
-    DebugLevel = cDebug.LEVEL_All
+    DebugLevel = cDebug.LEVEL_ZERO
 
 class GitRepository:
     """
