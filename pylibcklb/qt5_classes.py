@@ -40,6 +40,8 @@ from abc import ABCMeta, abstractmethod
 import os
 import sys
 from pylibcklb.metadata import PackageVariables
+from pylibcklb.qt5_functions import ResizeWindow
+
 Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a class that handles as thread the reading from a directory.
@@ -272,10 +274,10 @@ class cStartScreenDialog(QWidget):
         if SizeHeight == None:
             SizeHeight  = QDesktopWidget().availableGeometry().height() * 0.5
 
-        self.setObjectName("Dialog")
-        self.resize(SizeWidth, SizeHeight)
+        ResizeWindow(self, SizeWidth, SizeHeight)
         self.setMaximumSize(QtCore.QSize(SizeWidth, SizeHeight))
 
+        self.setObjectName("Dialog")
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setObjectName("verticalLayout")
 
@@ -311,10 +313,10 @@ class cInfoDialog(QWidget):
         if SizeHeight == None:
             SizeHeight  = QDesktopWidget().availableGeometry().height() * 0.5
 
-        self.setObjectName("Dialog")
-        self.resize(SizeWidth, SizeHeight)
+        ResizeWindow(self, SizeWidth, SizeHeight)
         self.setMaximumSize(QtCore.QSize(SizeWidth, SizeHeight))
 
+        self.setObjectName("Dialog")
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.verticalLayout.setObjectName("verticalLayout")
