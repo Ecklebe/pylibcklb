@@ -264,11 +264,17 @@ class cStartScreenDialog(QWidget):
 
     ## Documentation of the constructor
     #  @param self The object pointer.
-    def __init__(self, parent = None, ChangeLogText=None, WindowName=None):    
+    def __init__(self, parent = None, ChangeLogText=None, WindowName=None, SizeWidth=None, SizeHeight=None):  
         QWidget.__init__(self, parent)
 
+        if SizeWidth == None:
+            SizeWidth   = QDesktopWidget().availableGeometry().width() * 0.5
+        if SizeHeight == None:
+            SizeHeight  = QDesktopWidget().availableGeometry().height() * 0.5
+
         self.setObjectName("Dialog")
-        self.resize(1000, 500)
+        self.resize(SizeWidth, SizeHeight)
+        self.setMaximumSize(QtCore.QSize(SizeWidth, SizeHeight))
 
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -297,19 +303,24 @@ class cInfoDialog(QWidget):
 
     ## Documentation of the constructor
     #  @param self The object pointer.
-    def __init__(self, parent = None, ChangeLogText=None, WindowName=None):    
+    def __init__(self, parent = None, ChangeLogText=None, WindowName=None, SizeWidth=None, SizeHeight=None):   
         QWidget.__init__(self, parent)
 
+        if SizeWidth == None:
+            SizeWidth   = QDesktopWidget().availableGeometry().width() * 0.5
+        if SizeHeight == None:
+            SizeHeight  = QDesktopWidget().availableGeometry().height() * 0.5
+
         self.setObjectName("Dialog")
-        self.resize(1000, 500)
-        self.setMaximumSize(QtCore.QSize(1000, 500))
+        self.resize(SizeWidth, SizeHeight)
+        self.setMaximumSize(QtCore.QSize(SizeWidth, SizeHeight))
 
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.verticalLayout.setObjectName("verticalLayout")
 
         self.label_2 = QtWidgets.QLabel(self)
-        self.label_2.setMaximumSize(QtCore.QSize(950, 200))
+        self.label_2.setMaximumSize(QtCore.QSize(SizeWidth * 0.95, SizeHeight * 0.4))
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
 

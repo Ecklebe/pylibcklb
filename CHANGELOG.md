@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added
+- Rezise start dialog and info dialog to 0.5 of the display size
+
 ## [0.7.0] - 2017-11-25
 ### Added
 - add function to save changes of dict back to file to make them static
