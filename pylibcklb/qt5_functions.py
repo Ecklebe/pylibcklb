@@ -181,3 +181,33 @@ def SetDragDropMode(treeview, expr='NoDragDrop'):
     else:
         treeview.setDragDropMode(QAbstractItemView.NoDragDrop)
     return
+
+## Documentation for a method to size the window correct
+#   @param self The object pointer of the the window class
+#   @param SizeWidth The width of the window to set
+#   @param SizeHeight The height of the window to set
+#   @return True if the parameters are all correct, else False
+def ResizeWindow(self, SizeWidth:int=None, SizeHeight:int=None): 
+    if ((SizeWidth is not None) and (SizeHeight is not None)):
+        self.resize(SizeWidth, SizeHeight)
+        return True
+    return False
+
+## Documentation for a method to size the window correct with the use of mulitplicators
+#   @param self The object pointer of the the window class
+#   @param SizeWidthMultiplicator The multiplicator which tells how many of the display width should be used.
+#   @param SizeHeightMultiplicator The multiplicator which tells how many of the display height should be used.
+#   @return True if the parameters are all correct, else False
+def ResizeWindow2DisplayScreenWithMultiplicator(SELF, SizeWidthMultiplicator=None, SizeHeightMultiplicator=None):  
+
+        if SizeWidthMultiplicator == None:
+            SizeWidthMultiplicator = 1
+
+        if SizeHeightMultiplicator == None:
+            SizeHeightMultiplicator = 1
+
+        SizeWidth   = QDesktopWidget().availableGeometry().width() * SizeWidthMultiplicator
+        SizeHeight  = QDesktopWidget().availableGeometry().height() * SizeHeightMultiplicator
+
+        return ResizeWindow(SELF, SizeWidth, SizeHeight)
+
