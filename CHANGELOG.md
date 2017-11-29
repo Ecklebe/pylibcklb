@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Rezise start dialog and info dialog to 0.5 of the display size
+- Add method to create menu bar and the entry 'Edit'
+- Add classes to create main window without anything else and with pre created stuff
 
 ## [0.7.0] - 2017-11-25
 ### Added
