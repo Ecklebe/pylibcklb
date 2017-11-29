@@ -211,3 +211,26 @@ def ResizeWindow2DisplayScreenWithMultiplicator(SELF, SizeWidthMultiplicator=Non
 
         return ResizeWindow(SELF, SizeWidth, SizeHeight)
 
+## Documentation for a method to create an menubar at the parent main window
+#   @param parent The object pointer of the main window
+#   @return Menubar only if menubar has been created else none 
+def CreateMenuBar(parent:QtWidgets.QMainWindow):
+    if issubclass(type(parent),  QtWidgets.QMainWindow) is True: 
+        menuBar = QtWidgets.QMenuBar(parent)
+        parent.setMenuBar(menuBar) 
+        return menuBar
+    else:
+        return None
+
+## Documentation for a method to create an edit entry in the menubar
+#   @param parent The object pointer of the menubar
+#   @return menu entry only if menu entry has been created else none 
+def CreateEditEntryForMenubar(parent:QtWidgets.QMenuBar):
+    if issubclass(type(parent),  QtWidgets.QMenuBar) is True: 
+        menuEdit = QtWidgets.QMenu(parent)
+        menuEdit.setObjectName("menuEdit")
+        menuEdit.setTitle("Edit")
+        parent.addAction(menuEdit.menuAction())
+        return menuEdit
+    else:
+        return None
