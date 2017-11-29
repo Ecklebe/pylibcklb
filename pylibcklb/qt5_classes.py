@@ -35,14 +35,79 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from pylibcklb.ClassLibrary import cDebug 
+from pylibcklb.ClassLibrary import cDebug, cObserver
 from abc import ABCMeta, abstractmethod
 import os
 import sys
 from pylibcklb.metadata import PackageVariables
-from pylibcklb.qt5_functions import ResizeWindow
+from pylibcklb.qt5_functions import ResizeWindow, ResizeWindow2DisplayScreenWithMultiplicator, CreateMenuBar, CreateEditEntryForMenubar
 
 Debug = cDebug(PackageVariables.DebugLevel)
+
+class cApplicationMainWindow_BaseClass(QtWidgets.QMainWindow):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the menu bar entry
+    #  @param visibility The visibility of the toolbar after initalize
+    def __init__(self, name, SizeWidthMultiplicator=0.5, SizeHeightMultiplicator=0.5):  
+        QtWidgets.QMainWindow.__init__(self)
+
+        self.InstanceName  = name  
+        self.setWindowTitle(name)
+
+        ResizeWindow2DisplayScreenWithMultiplicator(self, SizeWidthMultiplicator, SizeHeightMultiplicator)
+        self.StartApplication()
+
+    ## Documentation of the destructor 
+    #  @param self The object pointer.
+    def __del__(self): 
+        print(self.InstanceName, 'died')  
+
+    ## Documentation for a method to start the application the right way
+    #  @param self The object pointer.     
+    def StartApplication(self):
+        self.show()
+        print(self.InstanceName, 'started') 
+
+    ## Documentation for a method to close the application the right way
+    #  @param self The object pointer.  
+    #  @param evnt The close event when clicked on the x window button   
+    def closeEvent(self, evnt):
+        if evnt:
+            print(self.InstanceName, 'closed')  
+            QtWidgets.QMainWindow.closeEvent(self, evnt)
+        else:
+            self.close()  
+
+class cApplicationMainWindow_Observer(cApplicationMainWindow_BaseClass, cObserver):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the menu bar entry
+    #  @param visibility The visibility of the toolbar after initalize
+    def __init__(self, name):
+        super(self.__class__, self).__init__(name, 0.5, 0.5) 
+
+class cApplicationMainWindow_Extended(cApplicationMainWindow_BaseClass):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the menu bar entry
+    #  @param visibility The visibility of the toolbar after initalize
+    def __init__(self, name, SizeWidthMultiplicator=0.5, SizeHeightMultiplicator=0.5, Use_MenuBar=True, MenuBar_EditEntry=True, Use_Undo_MenuBar=True):
+        super(self.__class__, self).__init__(name, SizeWidthMultiplicator, SizeHeightMultiplicator) 
+    
+        self.Menubar = None
+        self.MenuBar_Edit = None
+        self.Menubar_Edit_Undo = None
+
+        if Use_MenuBar == True:
+            self.Menubar = CreateMenuBar(self)
+            if MenuBar_EditEntry == True:
+                self.MenuBar_Edit = CreateEditEntryForMenubar(self.Menubar)
+                self.Menubar_Edit_Undo = cUndoEntry2MenuEditInMenuBar(self.MenuBar_Edit, Use_Undo_MenuBar)
+
 
 ## Documentation for a class that handles as thread the reading from a directory.
 # The reason for a thread is that while the programm searches in a great dir
@@ -136,6 +201,54 @@ class cToolbar(QToolBar):
         else: 
             self.hide()
         return
+
+## Documentation for a class that handles the creation of undo and redo for the menubar
+class cUndoEntry2MenuEditInMenuBar(QMenuBar):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the menu bar entry
+    #  @param visibility The visibility of the toolbar after initalize
+    def __init__(self, parent, visibility=False):
+        super(self.__class__, self).__init__() 
+
+        # Create the undostack
+        self.undoStack = QUndoStack(parent)      
+
+        # Create the undo action  
+        self.UndoAction = self.undoStack.createUndoAction(parent)
+        self.UndoAction.setShortcuts(QKeySequence.Undo)
+        self.UndoAction.setText("Undo")
+
+        # Create the redo action
+        self.RedoAction = self.undoStack.createRedoAction(parent)
+        self.RedoAction.setShortcuts(QKeySequence.Redo)
+        self.RedoAction.setText("Redo")
+
+        if issubclass(type(parent),  QtWidgets.QMenu)  is True:
+            parent.addAction(self.UndoAction)
+            parent.addAction(self.RedoAction)
+
+    ## Documentation of an methode to get the undo stack to work on it
+    #  @param self The object pointer.
+    def GetUndoStack(self):
+        return self.undostack
+
+    ## Documentation of an methode to set an command to the undostack
+    #  @param self The object pointer.
+    #  @param Command The command to set into the undostack
+    def AddCommand2UndoStack(self, Command:QUndoCommand):
+        self.undoStack.push(Command)
+
+    ## Documentation of an methode to set easily an known element to the undostack 
+    #  @param self The object pointer.
+    #  @param Elemenet The known element where the command is known
+    def AddElement2UndoStack(self, Element):
+        if type(Element) is QLineEdit:
+            self.undoStack.push(Command2Store_QLineEdit(Element))
+            return True
+        else:
+            return False
 
 ## Documentation for a class that handles the creation of undo and redo for the toolbar
 # The following code explaines the example usage:
