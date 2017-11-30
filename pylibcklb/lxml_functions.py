@@ -33,8 +33,8 @@
 import os  
 import lxml                                                                    
 from lxml import etree
-from .ClassLibrary import cDebug 
-from .FunctionLibrary import remove_prefix, IsThereAKnownPrefix
+from pylibcklb.ClassLibrary import cDebug 
+from pylibcklb.FunctionLibrary import remove_prefix, IsThereAKnownPrefix
 from pylibcklb.metadata import PackageVariables
 Debug = cDebug(PackageVariables.DebugLevel)
 
