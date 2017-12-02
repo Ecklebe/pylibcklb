@@ -112,21 +112,61 @@ def IsThereAKnownPrefix(text, ListOfPrefixes):
 #   @return The returned value is true to signalize that the directory is created
 def CreateDir(dir):
     Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+    try:
+        os.makedirs(os.path.dirname(dir), exist_ok=True )
+    except OSError as e:
+        print("OS error({0}): {1}".format(e.errno, e.strerror))
+        return False
     return True
 
 ## Documentation for a method to let the user search the correct directory to load a file
+#   @note Hidden mode did not work under windows os at the moment
 #   @code 
-#   ret = CreateFile('Some Text', 'Path2Dir\Filename.txt')
+#   ret = CreateFile(Dir='Path2Dir, file_name='Filename.txt', FileContent='Some Text', Hidden=True/False)
 #   @endcode
-#   @param FileContent The content to save into the new file
 #   @param Dir The directory to create the file, the directory parameter must have included the filename and filetype
-def CreateFile(FileContent, Dir):
+#   @param file_name The name of the file to write to
+#   @param FileContent The content to save into the new file
+#   @param Hidden If the file should be a hidden file
+def CreateFile(Dir:str, file_name:str, FileContent:str, Hidden:bool=False):
     Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
-    os.makedirs(os.path.dirname(Dir), exist_ok=True)
-    with open(Dir, "w") as f:
-        f.write(str(FileContent))
+
+    import ctypes
+    FILE_ATTRIBUTE_HIDDEN = 0x02
+    FILE_ATTRIBUTE_NORMAL = 0x80
+    FILE_ATTRIBUTE = FILE_ATTRIBUTE_NORMAL
+
+    if Hidden: 
+        #FILE_ATTRIBUTE = FILE_ATTRIBUTE_HIDDEN
+        # For *nix add a '.' prefix.
+        prefix = '.' if os.name != 'nt' else ''
+        file_name = prefix + file_name
+
+    Dir = os.path.join(Dir, file_name)
+
+    if not os.path.isdir(Dir):
+        ret = CreateDir(Dir)
+        if ret != True: return False
+
+    try:
+        with open(Dir, "w") as f:
+            f.write(str(FileContent))
+        f.close()
+    except IOError as e:
+        print("I/O error({0}): {1}".format(e.errno, e.strerror))
+        return False
+    except:
+        print('Unknown error occured')
+        return False
+
+    # For windows set file attribute.
+    # code snipped come original from: https://stackoverflow.com/a/25432403
+    if (os.name == 'nt'):
+        ret = ctypes.windll.kernel32.SetFileAttributesW(file_name, FILE_ATTRIBUTE)
+        if not ret: # There was an error.
+            raise ctypes.WinError()
+            return False
+
     return True
 
 ## Documentation for a method to save the changes of an dict back to the file for remembering on next application start
