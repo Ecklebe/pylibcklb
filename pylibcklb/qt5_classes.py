@@ -8,7 +8,7 @@
 #               To use this file:  from pylibcklb import qt5_classes as QT5CL\n
 #               To use a function: QT5CL.SomeFuction()\n\n        
 #               
-# @pre          The library was developed with python 3.6 and pyqt5 
+# @pre          The library was developed with python 3.6 64 bit and pyqt5 
 #
 # @bug          No bugs at the moment.
 #

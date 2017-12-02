@@ -8,7 +8,7 @@
 #               To use this file:  from pylibcklb import lxml_functions as LXFL\n
 #               To use a function: LXFL.SomeFuction()\n\n        
 #
-# @pre          The programm was developed with python 3.6  and lxml
+# @pre          The library was developed with python 3.6 64 bit  and lxml
 #
 # @bug          No bugs at the moment.
 #

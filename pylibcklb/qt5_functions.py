@@ -8,8 +8,7 @@
 #               To use this file:  from pylibcklb import qt5_functions as QT5FL\n
 #               To use a function: QT5FL.SomeFuction()\n\n        
 #               
-# @pre          The programm was developed with python 3.5 and pyqt5 and the following modules and installation possiblites:
-#               - nothing at the moment
+# @pre          The library was developed with python 3.6 64 bit and pyqt5 
 #
 # @bug          No bugs at the moment.
 #

@@ -8,7 +8,7 @@
 #               To use this file:  from pylibcklb import math_functions as MFL\n
 #               To use a function: MFL.SomeFuction()\n\n        
 #
-# @pre          The library was developed with python 3.6 
+# @pre          The library was developed with python 3.6 64 bit
 #
 # @bug          No bugs at the moment.
 #

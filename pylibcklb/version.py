@@ -10,7 +10,7 @@
 #               2) we can import it in setup.py for the same reason
 #               3) we can import it into your module module
 #
-# @pre          The library was developed with python 3.6 
+# @pre          The library was developed with python 3.6 64 bit
 #
 # @bug          No bugs at the moment.
 #

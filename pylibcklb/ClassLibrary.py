@@ -8,7 +8,7 @@
 #               To use this file:  from pylibcklb import ClassLibrary as CL\n
 #               To use a function: CL.SomeClass()\n\n        
 #
-# @pre          The library was developed with python 3.5 and pyqt5
+# @pre          The library was developed with python 3.6 64 bit
 #
 # @bug          No bugs at the moment.
 #

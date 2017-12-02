@@ -1,4 +1,4 @@
-## Metadata file for the ADTF-Filtergenerator
+## Metadata file for the pylibcklb package
 #
 # @file		    metadata.py
 # @author	    Tobias Ecklebe
@@ -6,7 +6,7 @@
 # @version	    0.1.0
 # @note		    The metadata is stored here. It can be used by any other module in this project this way
 # 
-# @pre          The programm was developed with python 3.5 64Bit and pyqt5 an installation is possible over the installtaion batch script.
+# @pre          The library was developed with python 3.6 64 bit
 #
 # @bug          No bugs at the moment.
 #
