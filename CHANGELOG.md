@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Fixed
+- Make CreateDir and CreateFile more safety through call submethods in try-except-block
+- 
 ## [0.8.0] - 2017-11-29
 ### Added
 - Rezise start dialog and info dialog to 0.5 of the display size
@@ -48,7 +51,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.7.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.8.0...master
+[0.8.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.7.0...v0.8.0
 [0.7.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.6.0...v0.7.0
 [0.6.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.5.0...v0.6.0
 [0.5.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.4.0...v0.5.0
