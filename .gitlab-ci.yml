@@ -1,10 +1,20 @@
 image: python:3.6
 
 stages:
+  - mirror
   - build
   - test
   - install   
   
+github_mirror:
+  stage: mirror
+  only:
+    - master
+  script:
+    - git checkout master
+    - git pull origin master
+    - git push https://Ecklebe:$GITHUB_OAUTH_TOKEN@github.com/Ecklebe/pylibcklb.git master --force
+    
 run_build:
   stage: build
   tags:
