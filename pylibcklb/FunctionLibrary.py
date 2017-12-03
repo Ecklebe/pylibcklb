@@ -41,6 +41,10 @@ import fileinput
 from pylibcklb.metadata import PackageVariables
 Debug = cDebug(PackageVariables.DebugLevel)
 
+## Documentation for a method to print to command line hello world and display the usage of the package
+def HelloWorld():
+    print('Hello world i am the pylibcklb package')
+
 ## Documentation for a method to get an bool from the xml string
 # @param value Value from xml string
 # @return Boolean extract from string
