@@ -266,7 +266,7 @@ def IsEnumType(Type):
 def GetValueForBaseType(Type):
 
     if Type == 'xsd:double':
-        return "DOUBLE_0.000"
+        return "DOUBLE_0,000"
     elif Type == 'xsd:string':
         return "Muster"
     elif Type == 'xsd:dateTime':
