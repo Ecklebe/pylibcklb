@@ -33,10 +33,12 @@
 import os
 from subprocess import Popen
 from pylibcklb.metadata import PackageVariables
+from pylibcklb.ClassLibrary import cDebug
 Debug = cDebug(PackageVariables.DebugLevel)
 
 class PyInstaller:
     
+    #note Code comes original from Hermann Krumrey: gitlab-build-scripts-0.6.0, but was deleted from his server
     def BuildOnWindows(build_path, project_name, version_number):
         main_py = os.path.join(project_name, "main.py")
         icon_file = os.path.join(project_name, "resources", "logo", "logo.ico")
@@ -53,7 +55,7 @@ class PyInstaller:
 
         os.rename(file_origin, file_destination)
 
-
+    #note Code comes original from Hermann Krumrey: gitlab-build-scripts-0.6.0, but was deleted from his server
     def BuildOnLinux(build_path, project_name, version_number):
         Popen(["pyinstaller", os.path.join(project_name, "main.py"), "--onefile"]).wait()
 
@@ -65,6 +67,7 @@ class PyInstaller:
 
     def CreateSpec():
        print('Create the installer spec')
+
 
 
 
