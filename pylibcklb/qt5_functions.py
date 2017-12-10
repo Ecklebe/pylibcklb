@@ -38,14 +38,24 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from pylibcklb.ClassLibrary import cDebug 
 from pylibcklb.metadata import PackageVariables
+from pylibcklb.FunctionLibrary import GetRelativePathFromAbsolutePath
 Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to let the user search the correct directory.
 #  @param self The object pointer of the the window class
 #  @param windowname The name of the pop up window that describe what directory the user has to search
 def BrowseFolder(self, windowname):        
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     # execute getExistingDirectory dialog and set the directory variable to be equal to the user selected directory and return that
-    return QtWidgets.QFileDialog.getExistingDirectory(self, windowname)      
+    return QtWidgets.QFileDialog.getExistingDirectory(self, windowname)     
+
+## Documentation for a method to let the user search the correct directory and return an relative path
+#  @param self The object pointer of the the window class
+#  @param windowname The name of the pop up window that describe what directory the user has to search
+def BrowseFolderRelative(self, windowname):      
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    dir = BrowseFolder(self,windowname)  
+    return GetRelativePathFromAbsolutePath(dir)
 
 ## Documentation for a method to let the user search the correct directory to save a file
 #   @code 

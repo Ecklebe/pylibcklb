@@ -42,8 +42,45 @@ from pylibcklb.metadata import PackageVariables
 Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to print to command line hello world and display the usage of the package
-def HelloWorld():
+def HelloWorld() -> None:
     print('Hello world i am the pylibcklb package')
+
+## Documentation for a method to get an relativ path from current working path to target path
+# @param TargetPath Path to target
+# @return Relative path to target
+def GetRelativePathFromAbsolutePath(TargetPath) -> str:
+    if os.path.isabs(TargetPath):
+        print('Target path is absolute:                             ' + TargetPath)
+        cwd = os.getcwd()
+        print('Current working path is:                             ' + cwd)
+        common_prefix = os.path.commonprefix([cwd, TargetPath])
+        path = os.path.relpath(TargetPath, common_prefix)
+        print('Relative path from working path to target path is:   ' + path)
+        return path
+    else:
+        print('Path is relative: ' + TargetPath)
+        return TargetPath
+
+## Documentation for a method to print the message in green as success message
+# @note Code comes originally from: https://github.com/Preston-Landers/python-project-template/blob/master/setup.py.tpl
+# @param message Message to print to command line
+def print_success_message(message) -> None:
+    try:
+        import colorama
+        print(colorama.Fore.GREEN + message + colorama.Fore.RESET)
+    except ImportError:
+        print(message)
+
+## Documentation for a method to print the message in red as error message
+# @note Code comes originally from: https://github.com/Preston-Landers/python-project-template/blob/master/setup.py.tpl
+# @param message Message to print to command line
+def print_failure_message(message) -> None:
+    try:
+        import colorama
+        print(colorama.Fore.RED + message + colorama.Fore.RESET,
+              file=sys.stderr)
+    except ImportError:
+        print(message, file=sys.stderr)
 
 ## Documentation for a method to get an bool from the xml string
 # @param value Value from xml string

@@ -6,9 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added 
+- add function to get relative path to target path from current working path
+- add function to print message in green and red for success or error
 ### Fixed
 - Make CreateDir and CreateFile more safety through call submethods in try-except-block
-- 
+
 ## [0.8.0] - 2017-11-29
 ### Added
 - Rezise start dialog and info dialog to 0.5 of the display size
