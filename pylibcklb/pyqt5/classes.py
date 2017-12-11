@@ -39,7 +39,7 @@ from abc import ABCMeta, abstractmethod
 import os
 import sys
 from pylibcklb.metadata import PackageVariables
-from pylibcklb.pyqt5-library.qt5_functions import ResizeWindow, ResizeWindow2DisplayScreenWithMultiplicator, CreateMenuBar, CreateEditEntryForMenubar
+from pylibcklb.pyqt5.functions import ResizeWindow, ResizeWindow2DisplayScreenWithMultiplicator, CreateMenuBar, CreateEditEntryForMenubar
 
 Debug = cDebug(PackageVariables.DebugLevel)
 
