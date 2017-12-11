@@ -5,8 +5,7 @@
 # @date		    05.11.2017
 # @version	    0.1.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n
-#               To use this file:  from pylibcklb import math_functions as MFL\n
-#               To use a function: MFL.SomeFuction()\n\n        
+#               To use this file:  from pylibcklb.math-library.math_functions import SomeClassOrFunction\n  
 #
 # @pre          The library was developed with python 3.6 64 bit
 #

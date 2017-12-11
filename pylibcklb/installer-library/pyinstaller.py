@@ -1,12 +1,11 @@
-## Library of classes with installers  
+## Library of classes for pyinstaller  
 #
-# @file		    InstallerScriptLibrary.py
+# @file		    pyinstaller.py
 # @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
 # @date		    14.11.2017
 # @version	    0.1.0
 # @note		    This file includes classes as libary that i think are great for different projects.\n\n
-#               To use this file:  from pylibcklb import InstallerScriptLibrary as ISL\n
-#               To use a function: ISL.SomeClass()\n\n        
+#               To use this file:  from pylibcklb.installer-library.pyinstaller import SomeClassOrFunction\n   
 #
 # @pre          The library was developed with python 3.6 64 bit
 #
@@ -40,18 +39,25 @@ class PyInstaller:
     
     #note Code comes original from Hermann Krumrey: gitlab-build-scripts-0.6.0, but was deleted from his server
     def BuildOnWindows(build_path, project_name, version_number):
-        main_py = os.path.join(project_name, "main.py")
-        icon_file = os.path.join(project_name, "resources", "logo", "logo.ico")
+        main_py     = os.path.join(project_name, "main.py")
+        icon_file   = os.path.join(project_name, "resources", "logo", "logo.ico")
+        distpath    = os.path.join("deploy", "dist")
+        buildpath   = os.path.join("deploy", "build")
+        specpath    = os.path.join("deploy", "spec")
 
         Popen(["pyinstaller",
                main_py,
                "--onefile",
+               "--clean",
                "--windowed",
+               "--distpath="+ distpath,
+               "--workpath="+ buildpath, 
+               "--specpath="+specpath,
                "--icon=" + icon_file]).wait()
 
         file_name = project_name + "-windows-" + version_number + ".exe"
-        file_origin = os.path.join("dist", "main.exe")
-        file_destination = os.path.join(build_path, file_name)
+        file_origin = os.path.join(distpath, "main.exe")
+        file_destination = os.path.join(distpath, file_name)
 
         os.rename(file_origin, file_destination)
 

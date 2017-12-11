@@ -5,8 +5,7 @@
 # @date		    05.11.2017
 # @version	    0.2.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n
-#               To use this file:  from pylibcklb import lxml_functions as LXFL\n
-#               To use a function: LXFL.SomeFuction()\n\n        
+#               To use this file:  from pylibcklb.xml-library.lxml_functions import SomeClassOrFunction\n           
 #
 # @pre          The library was developed with python 3.6 64 bit  and lxml
 #

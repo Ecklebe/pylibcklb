@@ -5,8 +5,7 @@
 # @date		    01.11.2017
 # @version	    0.1.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n
-#               To use this file:  from pylibcklb import qt5_classes as QT5CL\n
-#               To use a function: QT5CL.SomeFuction()\n\n        
+#               To use this file:  from pylibcklb.pyqt5-library.qt5_classes import SomeClassOrFunction\n  
 #               
 # @pre          The library was developed with python 3.6 64 bit and pyqt5 
 #

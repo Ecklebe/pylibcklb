@@ -1,20 +1,10 @@
-## Version file for pylibcklb package
+## Init file of the pylibcklb package
 #
-# @file		    version.py
+# @file		    __init__.py
 # @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
-# @date		    05.11.2017
+# @date		    02.11.2017
 # @version	    0.1.0
-# @note		    https://stackoverflow.com/a/16084844
-#               Store the version here so:
-#               1) we don't load dependencies by storing it in __init__.py
-#               2) we can import it in setup.py for the same reason
-#               3) we can import it into your module module
-#
-# @pre          The library was developed with python 3.6 64 bit
-#
 # @bug          No bugs at the moment.
-#
-# @warning      No warnings at the moment
 #
 # @copyright    pylibcklb package
 #               Copyright (C) 2017  Tobias Ecklebe
@@ -32,5 +22,3 @@
 #               You should have received a copy of the GNU Lesser General Public License
 #               along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-__version__ = '1.0.0'
