@@ -39,7 +39,7 @@ from abc import ABCMeta, abstractmethod
 import os
 import sys
 from pylibcklb.metadata import PackageVariables
-from pylibcklb.pyqt5.functions import ResizeWindow, ResizeWindow2DisplayScreenWithMultiplicator, CreateMenuBar, CreateEditEntryForMenubar
+from pylibcklb.pyqt5.functions import ResizeWindow, ResizeWindow2DisplayScreenWithMultiplicator, CreateMenuBar, CreateEditEntryForMenubar, CreateVerticalLayout, CreateHelpEntryForMenubar
 
 Debug = cDebug(PackageVariables.DebugLevel)
 
@@ -54,6 +54,10 @@ class cApplicationMainWindow_BaseClass(QtWidgets.QMainWindow):
 
         self.InstanceName  = name  
         self.setWindowTitle(name)
+        self.CentralWidget = QWidget(self)          
+        self.setCentralWidget(self.CentralWidget) 
+        self.BaseLayout = CreateVerticalLayout(parent = self.CentralWidget, layout_name = 'BaseVerticalLayout')
+        #self.CentralWidget.setLayout(self.BaseLayout)
 
         ResizeWindow2DisplayScreenWithMultiplicator(self, SizeWidthMultiplicator, SizeHeightMultiplicator)
         self.StartApplication()
@@ -94,8 +98,8 @@ class cApplicationMainWindow_Extended(cApplicationMainWindow_BaseClass):
     #  @param self The object pointer.
     #  @param parent An pointer to the parent where we wont to add the menu bar entry
     #  @param visibility The visibility of the toolbar after initalize
-    def __init__(self, name, SizeWidthMultiplicator=0.5, SizeHeightMultiplicator=0.5, Use_MenuBar=True, MenuBar_EditEntry=True, Use_Undo_MenuBar=True):
-        super(self.__class__, self).__init__(name, SizeWidthMultiplicator, SizeHeightMultiplicator) 
+    def __init__(self, name, SizeWidthMultiplicator=0.5, SizeHeightMultiplicator=0.5, Use_MenuBar=True, MenuBar_EditEntry=True, Use_Undo_MenuBar=True, MenuBar_HelpEntry=True):
+        cApplicationMainWindow_BaseClass.__init__(self, name, SizeWidthMultiplicator, SizeHeightMultiplicator) 
     
         self.Menubar = None
         self.MenuBar_Edit = None
@@ -106,6 +110,19 @@ class cApplicationMainWindow_Extended(cApplicationMainWindow_BaseClass):
             if MenuBar_EditEntry == True:
                 self.MenuBar_Edit = CreateEditEntryForMenubar(self.Menubar)
                 self.Menubar_Edit_Undo = cUndoEntry2MenuEditInMenuBar(self.MenuBar_Edit, Use_Undo_MenuBar)
+
+            if MenuBar_HelpEntry  == True: 
+                self.MenuBar_Help = CreateHelpEntryForMenubar(self.Menubar)
+                self.Menubar_Help_About = cAboutEntry2MenuHelpInMenuBar(self.MenuBar_Help, SizeWidthMultiplicator = SizeWidthMultiplicator, SizeHeightMultiplicator = SizeHeightMultiplicator)
+
+    def SetChangelogText(self, TextOfChangelog):
+        self.Menubar_Help_About.ChangeLogText = TextOfChangelog
+
+    def SetProgrammInformationText(self, ProgrammInformationText):
+        self.Menubar_Help_About.ProgrammInformationText = ProgrammInformationText
+
+    def SetStateOfCheckBoxStartScreen(self, State):
+        self.Menubar_Help_About.CheckBoxStartScreen = State
 
 
 ## Documentation for a class that handles as thread the reading from a directory.
@@ -200,6 +217,56 @@ class cToolbar(QToolBar):
         else: 
             self.hide()
         return
+
+## Documentation for a class that handles the creation of the programm about
+class cAboutEntry2MenuHelpInMenuBar(QMenuBar):
+
+    ## Documentation of the constructor
+    #  @param self The object pointer.
+    #  @param parent An pointer to the parent where we wont to add the menu bar entry
+    #  @param visibility The visibility of the toolbar after initalize
+    def __init__(self, parent, ChangeLogText='Place for the change log', ProgrammInformationText='Place for programm information', CheckBoxStartScreen=True, SizeHeightMultiplicator=None, SizeWidthMultiplicator=None):
+        super(self.__class__, self).__init__() 
+
+        self.ChangeLogText = ChangeLogText
+        self.ProgrammInformationText = ProgrammInformationText
+        self.CheckBoxStartScreen = CheckBoxStartScreen
+        self.action_about = QtWidgets.QAction(self)
+        self.action_about.setObjectName("action_about")
+        self.action_about.setText("About")
+        self.action_about.triggered.connect(self.DisplayProgramInformation)
+        self.SizeHeightMultiplicator = SizeHeightMultiplicator
+        self.SizeWidthMultiplicator = SizeWidthMultiplicator
+
+        parent.addAction(self.action_about)
+
+    ## Documentation for a method to display the programm informations as pop up window
+    #  @param self The object pointer.  
+    def DisplayProgramInformation(self): 
+        window = QtWidgets.QDialog(self)    
+        ui = cInfoDialog(parent=window, ChangeLogText=self.ChangeLogText, SizeHeight = QDesktopWidget().availableGeometry().height() * self.SizeHeightMultiplicator, SizeWidth=QDesktopWidget().availableGeometry().width() * self.SizeWidthMultiplicator)
+        ui.label_2.setText(self.ProgrammInformationText)
+        ui.checkBox_Startscreen.setEnabled(self.CheckBoxStartScreen)
+        if self.CheckBoxStartScreen == False:
+            ui.checkBox_Startscreen.hide()
+        
+        self.center(window)
+        window.show()
+
+    # From https://gist.github.com/saleph/163d73e0933044d0e2c4
+    def center(self, window):
+        # geometry of the main window
+        qr = self.frameGeometry()
+
+        # center point of screen
+        cp = QDesktopWidget().availableGeometry().center()
+
+        # move rectangle's center point to screen's center point
+        qr.moveCenter(cp)
+
+        # top left of rectangle becomes top left of window centering it
+        window.move(qr.topLeft())
+
 
 ## Documentation for a class that handles the creation of undo and redo for the menubar
 class cUndoEntry2MenuEditInMenuBar(QMenuBar):
@@ -451,6 +518,7 @@ class cInfoDialog(QWidget):
         QtCore.QMetaObject.connectSlotsByName(self)
         if WindowName is not None:
             self.setWindowTitle(WindowName)
+
         self.show()
 
     def retranslateUi(self):

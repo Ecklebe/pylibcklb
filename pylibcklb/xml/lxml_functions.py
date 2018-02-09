@@ -33,9 +33,60 @@ import os
 import lxml                                                                    
 from lxml import etree
 from pylibcklb.ClassLibrary import cDebug 
-from pylibcklb.FunctionLibrary import remove_prefix, IsThereAKnownPrefix
+from pylibcklb.FunctionLibrary import remove_prefix, remove_postfix, IsThereAKnownPrefix
 from pylibcklb.metadata import PackageVariables
 Debug = cDebug(PackageVariables.DebugLevel)
+
+## Documentation of a method that updates a key value pair
+# @param xmlitem The xml item that should be updated
+# @param key The key that should be updated
+# @param value The new value that be updated in the key
+def UpdateKeyValuePair(xmlitem, key, value):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    KeyList = xmlitem.keys()
+    message = ''
+    if key in KeyList:
+        ValueInKey = xmlitem.get(key)
+        if value != ValueInKey:
+            xmlitem.set(key,value)
+            return True, message
+        else:
+            message = 'The NewValue is not new'
+            Debug.Print(Debug.LEVEL_All, message)
+            return False, message
+    #If the key is not in the list, we check if there is a key in the list,
+    #that has an prefix
+    elif any(key in s for s in KeyList):
+        MatchingStringList = [s for s in KeyList if key in s]
+        prefix = remove_postfix(MatchingStringList[0],key)
+        Debug.Print(Debug.LEVEL_All, str('There is a key with prefix: (' + prefix + key + ') in the item.keys(): ' + str(KeyList)))
+        Debug.Print(Debug.LEVEL_All, 'We remove the element with prefix from the xml tree, create an new element in the tree and then update the value')               
+        ValueInKey = xmlitem.get(MatchingStringList[0])
+        if value != ValueInKey:
+            ChangeKeyName(xmlitem, MatchingStringList[0], key)
+            xmlitem.set(key,value)
+            return True, message
+        else:
+            message = 'The NewValue is not new'
+            Debug.Print(Debug.LEVEL_All, message)
+            return False, message
+    else:
+        message = 'There is no key: (' + key + ') in the item.keys(): ' + str(KeyList)
+        Debug.Print(Debug.LEVEL_All, message)
+        return False, message        
+
+## Documentation of a method that changes the key name of an item in the
+## tree over a delete the old key value pair and create a new one
+# @param xmlitem The xml item where to change the key name
+# @param key The key that should be changed
+# @param NewKey The new name of the key
+def ChangeKeyName(xmlitem, key, NewKey):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    if key in xmlitem.keys():
+        value = xmlitem.get(key)
+        xmlitem.attrib.pop(key)
+        xmlitem.set(NewKey,value)
+    return
 
 ## Documentation for a method to remove all prefixes from the xml attributes.
 # Only the enum prefix will be not removed, to get the drop down

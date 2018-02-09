@@ -74,6 +74,35 @@ class PyInstaller:
     def CreateSpec():
        print('Create the installer spec')
 
+## Documentation for a method to build the executable with pyinstaller
+# Write the following code to some python script in the top directory and call it then from windows command line:
+# @code
+#from pylibcklb.installer.pyinstaller import build
+#
+#if __name__ == "__main__":
+#    name    = 'Example Program'
+#    version = '1.0.0' 
+#    build(name, version)
+# @endcode
+#   @param programm_name The name of the program
+#   @param version_number The version of the program
+def build(programm_name, version_number):
+    cwd = os.getcwd()
+    specpath    = os.path.join("deploy")
+    distpath    = os.path.join("dist")
+    print(distpath)
+    if not os.path.exists(specpath): return False
+    os.chdir(specpath)
+    Popen(["pyinstaller",
+            'main.spec']).wait()
 
+
+    file_name = programm_name + "-windows-" + version_number + ".exe"
+    file_origin = os.path.join(distpath, "main.exe")
+    file_destination = os.path.join(distpath, file_name)
+    if os.path.exists(file_destination): 
+        os.remove(file_destination)
+    os.rename(file_origin, file_destination)
+    os.chdir(cwd)
 
 

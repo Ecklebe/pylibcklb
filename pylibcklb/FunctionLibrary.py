@@ -148,6 +148,21 @@ def IsThereAKnownPrefix(text, ListOfPrefixes):
     else:                 
         return None
 
+
+## Documentation of a method that checks the string if there is a known prefix
+# @param text The text that should 
+# @param ListOfPrefixes List of the prefixes to search in
+# @return String with prefix if the there is a known prefix and None if no prefix
+def IsThereAKnownPrefixThenRemoveIt(text, ListOfPrefixes):
+
+    ret = IsThereAKnownPrefix(text, ListOfPrefixes)
+
+    if ret is not None:
+       text = remove_prefix(text, ret)
+
+    return text
+    
+
 ## Documentation for a method to create an directory
 #   @param dir The directory to create
 #   @return The returned value is true to signalize that the directory is created

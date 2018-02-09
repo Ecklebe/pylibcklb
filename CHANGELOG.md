@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.1.0] - 2018-02-09
+### Added 
+- New function to check for prefix in text and remove if existing
+- New function to change the keyname of an xml item
+- New fuction to update xml key value pair in the attributes
+- New fuction to create executable with pyinstaller (works!)
+
 ## [1.0.0] - 2017-12-11
 ### Configured 
 - restructure of pylibcklb package 
@@ -59,7 +66,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.0.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.1.0...master
+[1.1.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.0.0...v1.1.0
 [1.0.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.9.0...v1.0.0
 [0.9.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.8.0...v0.9.0
 [0.8.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.7.0...v0.8.0

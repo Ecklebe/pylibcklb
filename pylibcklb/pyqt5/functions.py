@@ -242,3 +242,113 @@ def CreateEditEntryForMenubar(parent:QtWidgets.QMenuBar):
         return menuEdit
     else:
         return None
+
+## Documentation for a method to create an help entry in the menubar
+#   @param parent The object pointer of the menubar
+#   @return menu entry only if menu entry has been created else none 
+def CreateHelpEntryForMenubar(parent:QtWidgets.QMenuBar):
+    if issubclass(type(parent),  QtWidgets.QMenuBar) is True: 
+        menuEdit = QtWidgets.QMenu(parent)
+        menuEdit.setObjectName("menuHelp")
+        menuEdit.setTitle("Help")
+        parent.addAction(menuEdit.menuAction())
+        return menuEdit
+    else:
+        return None
+
+## Documentation for a method to create an bush button in the parent layout
+#   @param ParentLayout The layout to add at
+#   @param Function2Call The function to call when clicked
+#   @param parent The parent widget to add at
+#   @param name The object name
+#   @param button_text text to display on the button
+#   @param enabled The state of the push button
+#   @return pointer to the generated push button
+def CreatePushButton(ParentLayout, Function2Call, parent = None, name = 'pushButton', button_text = 'pushButton', enabled = True ):
+
+    if parent is None:
+        pushButton = QtWidgets.QPushButton()
+    else:
+        pushButton = QtWidgets.QPushButton(parent)
+
+    pushButton.setObjectName(name)
+    pushButton.setText(button_text)
+    pushButton.clicked.connect(Function2Call)
+    pushButton.setEnabled(enabled)
+    ParentLayout.addWidget(pushButton)
+    return pushButton
+
+## Documentation for a method to create an editable line in the parent layout
+#   @param ParentLayout The layout to add at
+#   @param Function2Call The function to call when text changed
+#   @param parent The parent widget to add at
+#   @param name The object name
+#   @param text text to display in the line
+#   @param enabled The state of the line
+#   @return pointer to the generated line
+def CreateEditableLine(ParentLayout, Function2Call, parent = None, name = 'lineedit', text = 'example text', enabled = True ):
+
+    if parent is None:
+        editor = QtWidgets.QLineEdit()
+    else:
+        editor = QtWidgets.QLineEdit(parent)
+
+    editor.clear()
+    editor.setObjectName(name)
+    editor.setText(text)
+    editor.textChanged.connect(Function2Call)
+    editor.setEnabled(enabled)
+    ParentLayout.addWidget(editor)
+    return editor 
+
+## Documentation for a method to create an horizontal layout
+#   @param parent The parent widget to add at
+#   @param parent_layout The layout to add at
+#   @param layout_name The object name
+#   @return pointer to the generated layout
+def CreateHorizontalLayout(parent = None, parent_layout = None, layout_name = "horizontalLayout"):
+
+    layout = None 
+
+    if (parent is None): 
+        layout = QtWidgets.QHBoxLayout()
+    else:
+        layout = QtWidgets.QHBoxLayout(parent)
+
+    if layout is not None:
+        layout.setObjectName(layout_name)
+
+    if (parent_layout is not None): 
+        parent_layout.addLayout(layout)
+
+    return layout
+
+## Documentation for a method to create an vertical layout
+#   @param parent The parent widget to add at
+#   @param parent_layout The layout to add at
+#   @param layout_name The object name
+#   @return pointer to the generated layout
+def CreateVerticalLayout(parent = None, parent_layout = None, layout_name = "verticalLayout"):
+
+    layout = None 
+
+    if (parent is None): 
+        layout = QtWidgets.QVBoxLayout()
+    else:
+        layout = QtWidgets.QVBoxLayout(parent)
+
+    if layout is not None:
+        layout.setObjectName(layout_name)
+
+    if (parent_layout is not None): 
+        parent_layout.addLayout(layout)
+
+    return layout
+
+## Documentation for a method to get the values from an calender widget
+#   @param calenderwidget The calender to get the date from
+#   @return day, month and year
+def GetDateFromCalenderWidget(calenderwidget):
+    date = QDate()
+    date = calenderwidget.selectedDate()
+    return date.day(), date.month(), date.year()
