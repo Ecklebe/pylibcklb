@@ -35,7 +35,7 @@ github_mirror:
     - git pull origin master
     - git push https://Ecklebe:$GITHUB_OAUTH_TOKEN@github.com/Ecklebe/pylibcklb.git master --force
 
-source_dist:
+pypi_dist:
   stage: deploy
   only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags) v1.0.0
