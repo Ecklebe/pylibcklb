@@ -37,8 +37,8 @@ github_mirror:
 
 pypi_dist:
   stage: deploy
-  only:
-    - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags) v1.0.0
+  #only:
+  #  - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags) v1.0.0
   script:
     - echo "[server-login]" >> ~/.pypirc
     - echo "username=" ${PYPI_USER} >> ~/.pypirc
