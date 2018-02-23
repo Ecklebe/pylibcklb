@@ -70,7 +70,7 @@ class General:
     Class that stores general information about a project
     """
 
-    project_description = 'The pylibcklb is a library of functions and classes created from Tobias Ecklebe and were used in different other projects.'
+    project_description = 'The pylibcklb is a library of functions and classes created from me and were used in different other projects of me.'
     """
     A short description of the project
     """
@@ -115,7 +115,9 @@ class Variables:
 
         "Natural Language :: English",
         'Programming Language :: Python :: 3.6',
-        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)"
+        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+        "Operating System :: Microsoft :: Windows :: Windows 10",
+        "Topic :: Software Development :: Libraries"
 
     ]
     """

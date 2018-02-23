@@ -1,9 +1,14 @@
 image: python:3.6
 
+variables:
+    PYPI_USER: SECURE
+    PYPI_PASSWORD: SECURE
+
 stages:
   - test
   - install   
   - mirror
+  - deploy
          
 run_unit_tests:
   stage: test
@@ -29,3 +34,13 @@ github_mirror:
     - git checkout master
     - git pull origin master
     - git push https://Ecklebe:$GITHUB_OAUTH_TOKEN@github.com/Ecklebe/pylibcklb.git master --force
+
+source_dist:
+  stage: deploy
+  only:
+    - master
+  script:
+    - echo "[server-login]" >> ~/.pypirc
+    - echo "username=" ${PYPI_USER} >> ~/.pypirc
+    - echo "password=" ${PYPI_PASSWORD} >> ~/.pypirc
+    - python setup.py register sdist bdist upload
