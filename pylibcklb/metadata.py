@@ -49,12 +49,12 @@ class GitRepository:
     The name of the repository
     """
 
-    gitlab_owner = "open-source/python"
+    gitlab_owner = "ecklebe"
     """
     The project's owner's username on Gitlab
     """
 
-    gitlab_site_url = "https://gitlab.ecklebe.de/"
+    gitlab_site_url = "https://github.com/"
     """
     The address of the Gitlab instance
     """
@@ -63,7 +63,6 @@ class GitRepository:
     """
     The Gitlab Project URL
     """
-
 
 class General:
     """
@@ -85,7 +84,7 @@ class General:
     The name(s) of the project author(s)
     """
 
-    author_emails = "tobias.ecklebe@outlook.de"
+    author_emails = "development.ecklebe@outlook.de"
     """
     The email address(es) of the project author(s)
     """
@@ -100,7 +99,7 @@ class General:
     The name of the project
     """
 
-    download_master_zip = GitRepository.gitlab_url + "/repository/archive.zip?ref=master"
+    download_master_zip = GitRepository.gitlab_url + "/archive/master.zip"
     """
     A URL linking to the current source zip file of the master branch.
     """
