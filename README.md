@@ -1,5 +1,8 @@
 # The pylibcklb library 
 
+[![version](https://img.shields.io/pypi/v/pylibcklb.svg)]()
+[![license](https://img.shields.io/pypi/l/pylibcklb.svg)]()         
+[![PyPI](https://img.shields.io/pypi/pyversions/pylibcklb.svg)]()
 [![build status](https://gitlab.ecklebe.de/open-source/python/pylibcklb/badges/master/build.svg)](https://gitlab.ecklebe.de/open-source/python/pylibcklb/commits/master) (mirroring, build and install on Linux)
 
 The pylibcklb library an package of different functions and classes for programming in python.
@@ -17,6 +20,19 @@ To install the package to the python packages you need **pip** the package insta
 
 ```batch
 pip install https://github.com/Ecklebe/pylibcklb/archive/master.zip
+
+or 
+
+pip install pylibcklb
+```
+
+## Installation
+
+ 1. Call the command line under windows as admin
+ 2. Type the following to command line and that's is
+
+```batch
+pip uninstall pylibcklb
 ```
 
 ## Usage
