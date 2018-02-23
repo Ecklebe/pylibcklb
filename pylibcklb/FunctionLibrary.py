@@ -256,3 +256,11 @@ def SaveChangesOfDictBack2File(FileDir:str, FileName:str, DictName:str, Dict:dic
         return True
     else:
         return False
+
+def ListAllFilesInDirWithEnding(dir, file_ending):
+    return [val for val in os.listdir(dir) if file_ending in val]
+
+def AppendFilenameWithString(filename_old, string):
+    filename_new, file_extension = os.path.splitext(filename_old)
+    ret = filename_old.replace(file_extension, string + file_extension)
+    return ret
