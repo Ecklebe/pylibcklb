@@ -88,21 +88,26 @@ class PyInstaller:
 #   @param version_number The version of the program
 def build(programm_name, version_number):
     cwd = os.getcwd()
-    specpath    = os.path.join("deploy")
-    distpath    = os.path.join("dist")
-    print(distpath)
-    if not os.path.exists(specpath): return False
-    os.chdir(specpath)
-    Popen(["pyinstaller",
-            'main.spec']).wait()
+    specpath    = os.path.join(cwd, "deploy")
+    distpath    = os.path.join(specpath, "dist")
+    print('specpath: '+ specpath)
+    print('distpath: '+ distpath)
+    if  os.path.exists(specpath): 
+        os.chdir(specpath)
+        Popen(["pyinstaller",
+                'main.spec']).wait()
+
+        file_name = programm_name + "-windows-" + version_number + ".exe"
+        file_origin = os.path.join(distpath, "main.exe")
+        file_destination = os.path.join(distpath, file_name)
+        if os.path.exists(file_destination): 
+            os.remove(file_destination)
+        os.rename(file_origin, file_destination)
+        os.chdir(cwd)
+    else:
+        print('Path for deployment with spec file doesent exists!')
+        return False
 
 
-    file_name = programm_name + "-windows-" + version_number + ".exe"
-    file_origin = os.path.join(distpath, "main.exe")
-    file_destination = os.path.join(distpath, file_name)
-    if os.path.exists(file_destination): 
-        os.remove(file_destination)
-    os.rename(file_origin, file_destination)
-    os.chdir(cwd)
 
 
