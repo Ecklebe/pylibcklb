@@ -39,6 +39,8 @@ import sys
 from pylibcklb.ClassLibrary import cDebug 
 import fileinput
 from pylibcklb.metadata import PackageVariables
+from urllib.request import pathname2url # Python 3.x
+import subprocess
 Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to print to command line hello world and display the usage of the package
@@ -100,7 +102,7 @@ def resource_path(relative_path):
         base_path = sys._MEIPASS
     except Exception:
         #simulate the top path, because in the project the main file is not in the root folder
-        base_path = os.path.abspath("..")
+        base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
 
@@ -264,3 +266,29 @@ def AppendFilenameWithString(filename_old, string):
     filename_new, file_extension = os.path.splitext(filename_old)
     ret = filename_old.replace(file_extension, string + file_extension)
     return ret
+
+## Documentation for a method to open an file in browser
+#   @param FilePath The file to open in browser
+def OpenFileInBrowser(FilePath):
+    url = 'file:{}'.format(pathname2url(FilePath))
+    OpenUrl(url)
+
+## Documentation for a method to open an url the correct way on the most systems
+#   @note Base code and idea comes from: https://stackoverflow.com/a/4217323
+#   @param url The url to open
+def OpenUrl(url):
+    if sys.platform=='win32':
+        try:
+            os.startfile(url)
+        except OSError as e:
+            print('While opening the url some error occure: \n'+str(e))
+    elif sys.platform=='darwin':
+        try:
+            subprocess.Popen(['open', url])
+        except OSError as e:
+            print('While opening the url some error occure: \n'+str(e))
+    else:
+        try:
+            subprocess.Popen(['xdg-open', url])
+        except OSError:
+            print('Please open a browser on: '+url)
