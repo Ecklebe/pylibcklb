@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.3.0] - 2018-02-28
+### Added 
+- Add function to clean layout
+- Add function to wait on boolean mutex in the pyqt enviorment
+- Add fuctions to to wait on signal, clear layout from widget 
+- Add new function to open file or url in correct browser
+
+## Fixed 
+- fix problem with resource_path function that is pointing to wrong path
 
 ## [1.2.0] - 2018-02-23
 ### Added 
@@ -71,7 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.2.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.3.0...master
+[1.3.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.2.0...v1.3.0
 [1.2.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.1.0...v1.2.0
 [1.1.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.0.0...v1.1.0
 [1.0.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v0.9.0...v1.0.0
