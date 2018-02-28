@@ -352,3 +352,70 @@ def GetDateFromCalenderWidget(calenderwidget):
     date = QDate()
     date = calenderwidget.selectedDate()
     return date.day(), date.month(), date.year()
+
+## Documentation for a method to wait on boolean signal to go on with the process
+#   @param Signal Boolean signal where we want to wait on true
+#   @return new boolean state of the signal
+def WaitOnSignal(Signal:bool):   
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    i = 0
+    while ( Signal != True ):
+        # not doing anything                                                                                                                                                                                                   
+        if ( i % 100000 == 0 ):
+            Debug.Print(Debug.LEVEL_All, "Waiting for user to push button next")
+        QCoreApplication.processEvents()
+        i += 1;
+
+    Signal = False
+    return Signal
+
+## Documentation for a method to wait on boolean signal to go on with the process
+#   @param Signal Boolean signal where we want to wait on true
+#   @return new boolean state of the signal
+def WatchMutexAndCallFunction(Mutex, Function2Call):   
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    i = 0
+    while ( Mutex.locked() == True):
+        # not doing anything                                                                                                                                                                                                   
+        if ( i % 100000 == 0 ):
+            Debug.Print(Debug.LEVEL_All, "Waiting for mutex release")
+        QCoreApplication.processEvents()
+        i += 1;
+
+    Function2Call()
+    return 
+
+## Documentation for a method to clean an layout
+#   @note Base code comes from https://stackoverflow.com/a/23087057
+#   @param layout2clear Layout to clean
+def ClearLayout(layout2clear):
+    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+    
+    if layout2clear != None:
+        while layout2clear.count():
+            child = layout2clear.takeAt(0)
+            if child.widget() is not None:
+                child.widget().deleteLater()
+            elif child.layout() is not None:
+                ClearLayout(child.layout())
+
+## Documentation for a method to get the name of the current page from an dict 
+# @note PageDict = {'main':0, 'options':1}
+# @param stackedWidget Pointer to the widget with the pages
+# @param PageDict The dict with the pages and pagenumbers
+# @return Name of the page or none if is not in page
+def GetNameOfCurrentPage(stackedWidget, PageDict):
+    for key in PageDict.keys():
+        if PageDict[key] == stackedWidget.currentIndex():
+            return key
+    return None
+
+## Documentation for a method to remove the widget and his childs from the layout
+#  @param widget The widget to remove
+#  @param layout The Layout where the widget should be removed
+def RemoveWidgetFromParentLayout(widget, layout):
+    import sip
+    layout.removeWidget(widget)
+    sip.delete(widget)
+    widget = None
+    return widget
