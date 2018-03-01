@@ -44,4 +44,4 @@ pypi_dist:
     - echo "username=" ${PYPI_USER} >> ~/.pypirc
     - echo "password=" ${PYPI_PASSWORD} >> ~/.pypirc
     #- sudo dpkg -i https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-2.1.1-linux.tar.gz
-    - python setup.py register sdist bdist upload
+    - python setup.py register sdist upload
