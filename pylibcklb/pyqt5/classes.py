@@ -526,3 +526,55 @@ class cInfoDialog(QWidget):
         self.setWindowTitle(_translate("Dialog", "About"))
         self.label_2.setText(_translate("Dialog", "TextLabel"))
         self.checkBox_Startscreen.setText(_translate("Dialog", "Show startscreen on startup"))
+
+## Documentation for a class that delegates the style of a selected item in the
+## qtreeview
+# @note Code is configured for pyqt5 but comes original from:
+# https://stackoverflow.com/questions/1956542/how-to-make-item-view-render-rich-html-text-in-qt/5443112#5443112
+# @code
+        #self.delegate = HTMLDelegate()
+        #self.TagTreeView.setItemDelegate(self.delegate)
+# @endcode
+# @param QtWidgets.QStyledItemDelegate Inheritance
+class HTMLDelegate(QtWidgets.QStyledItemDelegate):
+    def paint(self, painter, option, index):
+        options = QtWidgets.QStyleOptionViewItem(option)
+        self.initStyleOption(options,index)
+
+        style = QtWidgets.QApplication.style() if options.widget is None else options.widget.style()
+
+        doc = QtGui.QTextDocument()
+        doc.setHtml(options.text)
+
+        options.text = ""
+        style.drawControl(QtWidgets.QStyle.CE_ItemViewItem, options, painter)
+
+        ctx = QtGui.QAbstractTextDocumentLayout.PaintContext()
+
+        #Highlighting text if item is selected
+        #if (optionV4.state & QtWidgets.QStyle::State_Selected)
+        #    ctx.palette.setColor(QPalette::Text,
+        #    optionV4.palette.color(QPalette::Active,
+        #    QPalette::HighlightedText));
+
+        # Comes from a comment under the describen link
+        if options.state & QtWidgets.QStyle.State_Selected: 
+            ctx.palette.setColor(QtGui.QPalette.Text, options.palette.color(QtGui.QPalette.Active, QtGui.QPalette.HighlightedText))
+
+        textRect = style.subElementRect(QtWidgets.QStyle.SE_ItemViewItemText, options)
+        painter.save()
+        painter.translate(textRect.topLeft())
+        painter.setClipRect(textRect.translated(-textRect.topLeft()))
+        doc.documentLayout().draw(painter, ctx)
+
+        painter.restore()
+        return
+
+    def sizeHint(self, option, index):
+        options = QtWidgets.QStyleOptionViewItem(option)
+        self.initStyleOption(options,index)
+
+        doc = QtGui.QTextDocument()
+        doc.setHtml(options.text)
+        doc.setTextWidth(options.rect.width())
+        return QtCore.QSize(doc.idealWidth(), doc.size().height())

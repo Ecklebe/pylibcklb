@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.4.0] - 2018-03-01
+## Added 
+- add class that delegates the style of a selected item in the qtreeview
+- add function to check value if there is comma and if so replace it with a dot
+
 ## [1.3.0] - 2018-02-28
 ### Added 
 - Add function to clean layout
@@ -80,7 +85,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.3.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.4.0...master
+[1.4.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.3.0...v1.4.0
 [1.3.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.2.0...v1.3.0
 [1.2.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.1.0...v1.2.0
 [1.1.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.0.0...v1.1.0

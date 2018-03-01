@@ -292,3 +292,14 @@ def OpenUrl(url):
             subprocess.Popen(['xdg-open', url])
         except OSError:
             print('Please open a browser on: '+url)
+
+## Documentation for a method that checks a value if there is a comma in string an if so, replace it with a dot. 
+# The function was implemented because of the german splitting of floats with a comma instead of the american dot. 
+#   @param FilePath The file to open in browser
+def CheckIfValueIsFloatWithCommaInsteadOfDot(value):
+    if ',' in value:
+        newvalue = value.replace(",", ".")
+        print('Value has comma instead of dot: '+value+ ' vs. '+newvalue)
+        return newvalue
+    else:
+        return value
