@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.5.1] - 2018-06-16
+## Fixed
+- fix problem with syntax
+
 ## [1.5.0] - 2018-06-16
 ## Fixed
 - fix problem with the pyinstaller build on linux
@@ -89,7 +93,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.1...master
+[1.5.1]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.0...v1.5.1
 [1.5.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.4.0...v1.5.0
 [1.4.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.3.0...v1.4.0
 [1.3.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.2.0...v1.3.0

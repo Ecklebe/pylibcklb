@@ -40,6 +40,7 @@ Debug = cDebug(PackageVariables.DebugLevel)
 
 def BuildOnLinux(programm_name, version_number):
     cwd = os.getcwd()
+    print('BuildForLinux')
     specpath    = os.path.join(cwd, "deploy")
     distpath    = os.path.join(specpath, "dist")
     print('specpath: '+ specpath)
@@ -63,6 +64,7 @@ def BuildOnLinux(programm_name, version_number):
 
 def BuildOnWindows(programm_name, version_number):
     cwd = os.getcwd()
+    print('BuildForWindows')
     specpath    = os.path.join(cwd, "deploy")
     distpath    = os.path.join(specpath, "dist")
     print('specpath: '+ specpath)
@@ -96,7 +98,7 @@ def BuildOnWindows(programm_name, version_number):
 #   @param programm_name The name of the program
 #   @param version_number The version of the program
 def build(programm_name, version_number):
-    if platform.system() == 'Windows'
+    if platform.system() == 'Windows':
         BuildOnWindows(programm_name, version_number)
     else:
         BuildOnLinux(programm_name, version_number)
