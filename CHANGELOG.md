@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.6.0] - 2018-07-23
+## Added 
+- new functions and classes to work with ontologies and owlready2
+- add new variable log to debug class that can hold all messages of the new debug level doku. Note this level is now behind level zero and no more the level development
+
 ## [1.5.1] - 2018-06-16
 ## Fixed
 - fix problem with syntax
@@ -93,7 +98,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.1...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.6.0...master
+[1.6.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.1...v1.6.0
 [1.5.1]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.0...v1.5.1
 [1.5.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.4.0...v1.5.0
 [1.4.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.3.0...v1.4.0
