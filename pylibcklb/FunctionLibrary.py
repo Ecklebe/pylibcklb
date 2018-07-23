@@ -313,3 +313,6 @@ def is_dir_existing(dirname):
         raise argparse.ArgumentTypeError(msg)
     else:
         return dirname
+
+def get_list_of_files(folder:str, Filetype:str='txt') -> list:
+  return (os.path.join(folder, f) for f in os.listdir(folder) if Filetype in f)
