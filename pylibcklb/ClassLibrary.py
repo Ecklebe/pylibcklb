@@ -40,9 +40,10 @@ import traceback
 class cDebug(object):
 
     LEVEL_ZERO              = 0
-    LEVEL_DEVELOPMENT       = 1
-    LEVEL_FUNCTIONENTRY     = 2
-    LEVEL_All               = 3
+    LEVEL_DOKU              = 1
+    LEVEL_DEVELOPMENT       = 2
+    LEVEL_FUNCTIONENTRY     = 3
+    LEVEL_All               = 4
 
     ## Documentation of the constructor
     #  @param self The object pointer.
@@ -52,6 +53,7 @@ class cDebug(object):
             self.Level = Level
         else:
             self.Level = self.LEVEL_ZERO
+        self.log = []
 
     ## Documentation of the destructor 
     #  @param self The object pointer.
@@ -71,7 +73,14 @@ class cDebug(object):
     #  @param String2Print String to print on the console
     def Print(self, Level, String2Print):
         if self.Level >= Level:
-            print('Line ' + str(self.get_codeline()) + ' ' + str(String2Print))
+            if Level == self.LEVEL_DOKU:
+                tmp_str = str(String2Print)
+                self.log.append(tmp_str)
+                if self.Level > self.LEVEL_DOKU :
+                    print(tmp_str)  
+            else:
+                tmp_str = 'Line ' + str(self.get_codeline()) + ' ' + str(String2Print)
+                print(tmp_str)
    
     ## Documentation of a method to print by correct debug level an string at the console
     #  @note code comes original from: https://stackoverflow.com/a/36228241
@@ -88,7 +97,14 @@ class cDebug(object):
     #  @param Level Level of debug
     def PrintFunctionName(self, Level):
         if self.Level >= Level:
-            print(str(self.get_function_name()))    
+            tmp_str = str(self.get_function_name())
+            print(tmp_str)    
+            self.log.append(tmp_str)
+
+    ## Documentation of a method to return the log list
+    #  @param self The object pointer.
+    def get_log(self):
+        return self.log
 
 ## Documentation for a class that defines things of the observer pattern to inherit
 #  @param object Inherit from object
