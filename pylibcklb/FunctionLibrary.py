@@ -41,6 +41,7 @@ import fileinput
 from pylibcklb.metadata import PackageVariables
 from urllib.request import pathname2url # Python 3.x
 import subprocess
+import argparse
 Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to print to command line hello world and display the usage of the package
@@ -220,7 +221,7 @@ def CreateFile(Dir:str, file_name:str, FileContent:str, Hidden:bool=False):
     # For windows set file attribute.
     # code snipped come original from: https://stackoverflow.com/a/25432403
     if (os.name == 'nt'):
-        ret = ctypes.windll.kernel32.SetFileAttributesW(file_name, FILE_ATTRIBUTE)
+        ret = ctypes.windll.kernel32.SetFileAttributesW(Dir, FILE_ATTRIBUTE)
         if not ret: # There was an error.
             raise ctypes.WinError()
             return False
@@ -303,3 +304,12 @@ def CheckIfValueIsFloatWithCommaInsteadOfDot(value):
         return newvalue
     else:
         return value
+
+## Documentation for a method that checks if a dir exists 
+#   @param dirname The dir to check
+def is_dir_existing(dirname):
+    if not os.path.isdir(dirname):
+        msg = "{0} is not a directory".format(dirname)
+        raise argparse.ArgumentTypeError(msg)
+    else:
+        return dirname
