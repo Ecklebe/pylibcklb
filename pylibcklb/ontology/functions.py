@@ -28,19 +28,27 @@
 #
 
 from owlready2 import World, Ontology
+import pylibcklb.FunctionLibrary as FL
 import os
 
+def get_ontology_from_database(iri, db_dir_name) -> Ontology:
+    my_world = World()
+    my_world.set_backend(filename = db_dir_name)
+    return my_world.get_ontology(iri).load()
+
 def get_ontology_from_local_file(filename:str='', db_dir:str='', db_dir_name:str='', use_owl_world:bool=True) -> Ontology:
-    onto = None
     filename_with_prefix = 'file://'+filename
 
     if use_owl_world:
-        my_world = World()
         if not os.path.isdir(db_dir):
-            ret = FL.CreateDir(db_dir)           
+            ret = FL.CreateDir(db_dir)  
+        my_world = World()         
         my_world.set_backend(filename = db_dir_name)
 
-        onto = my_world.get_ontology(filename_with_prefix).load()
+        return my_world.get_ontology(filename_with_prefix).load()
     else:
-        onto = get_ontology(filename_with_prefix).load()
-    return onto
+        return get_ontology(filename_with_prefix).load()
+
+def get_onto_object_name(onto_object) -> str:
+    return str(onto_object.is_a[0]).split('.')[1]
+
