@@ -43,9 +43,7 @@ class convert_owl2sqlite3(object):
             ret = FL.CreateDir(self.db_dir)    
 
     def convert_worker(self, filename):      
-
-        db_filename = '.'.join((os.path.splitext(os.path.basename(filename))[0], "sqlite3"))
-        db_path = os.path.join(self.db_dir, db_filename)
+        db_path = os.path.join(self.db_dir, '.'.join((os.path.splitext(os.path.basename(filename))[0], "sqlite3")))
         if not os.path.isfile(db_path):
             print('Convert: '+ db_path)
             my_world = World()
