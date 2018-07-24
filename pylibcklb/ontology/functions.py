@@ -1,7 +1,7 @@
 ## functions libary file for all functions related to ontologies with owlready2
 #
 # @file		    functions.py
-# @author	    Tobias Ecklebe efos@ecklebe.de
+# @author	    Tobias Ecklebe
 # @date		    23.07.2018
 # @version	    0.1.0
 # @note		    To use this file:  from pylibcklb.ontology.functions import SomeClassOrFunction\n     
@@ -31,9 +31,9 @@ from owlready2 import World, Ontology
 import pylibcklb.FunctionLibrary as FL
 import os
 
-def get_ontology_from_database(iri, db_dir_name) -> Ontology:
+def get_ontology_from_database(iri, db_dir_name, exclusive=True) -> Ontology:
     my_world = World()
-    my_world.set_backend(filename = db_dir_name)
+    my_world.set_backend(filename = db_dir_name, exclusive=exclusive)
     return my_world.get_ontology(iri).load()
 
 def get_ontology_from_local_file(filename:str='', db_dir:str='', db_dir_name:str='', use_owl_world:bool=True) -> Ontology:
