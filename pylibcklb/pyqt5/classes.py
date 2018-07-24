@@ -1,7 +1,7 @@
 ## qt class libary file for all classes related to pyqt5
 #
 # @file		    qt5_classes.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    01.11.2017
 # @version	    0.1.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n

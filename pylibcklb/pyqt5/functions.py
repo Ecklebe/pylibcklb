@@ -1,7 +1,7 @@
 ## qt functions libary file for all functions related to pyqt5
 #
 # @file		    qt5_functions.py
-# @author	    Tobias Ecklebe efos@ecklebe.de
+# @author	    Tobias Ecklebe
 # @date		    25.08.2017
 # @version	    0.1.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n

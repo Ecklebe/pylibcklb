@@ -1,7 +1,7 @@
 ## Version file for pylibcklb package
 #
 # @file		    version.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    05.11.2017
 # @version	    0.1.0
 # @note		    https://stackoverflow.com/a/16084844
