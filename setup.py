@@ -49,10 +49,13 @@ def readme():
         with open('README.md') as f:
             return f.read()
 
-exec(open('pylibcklb/version.py').read())
+if os.environ.get('CI_COMMIT_TAG'):
+    version = os.environ['CI_COMMIT_TAG']
+else:
+    version = os.environ['CI_JOB_ID']
 
 setup(name=Variables.name,
-      version=__version__,
+      version=version,
       description=Variables.description,
       long_description=readme(),
       classifiers=Variables.classifiers,
