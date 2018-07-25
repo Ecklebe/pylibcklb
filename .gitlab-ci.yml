@@ -9,16 +9,7 @@ stages:
   - install   
   - mirror
   - deploy
-  
-before_script:
-    - myvar="$PWD"
-    - PANDOC_VER=2.1.1
-    - cd /opt && wget https://github.com/jgm/pandoc/releases/download/$PANDOC_VER/pandoc-$PANDOC_VER-1-amd64.deb
-    - dpkg -i pandoc-$PANDOC_VER-1-amd64.deb
-    - cd "$myvar"
-    - PYPANDOC_PANDOC=/opt/pandoc
-    - pip install pypandoc
-         
+           
 run_unit_tests:
   stage: test
   tags:
@@ -53,4 +44,11 @@ pypi_dist:
     - echo "username=" ${PYPI_USER} >> ~/.pypirc
     - echo "password=" ${PYPI_PASSWORD} >> ~/.pypirc
     #- sudo dpkg -i https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-2.1.1-linux.tar.gz
+    - myvar="$PWD"
+    - PANDOC_VER=2.1.1
+    - cd /opt && wget https://github.com/jgm/pandoc/releases/download/$PANDOC_VER/pandoc-$PANDOC_VER-1-amd64.deb
+    - dpkg -i pandoc-$PANDOC_VER-1-amd64.deb
+    - cd "$myvar"
+    - PYPANDOC_PANDOC=/opt/pandoc
+    - pip install pypandoc
     - python setup.py register sdist upload

@@ -31,10 +31,10 @@ from pylibcklb.metadata import Variables
 def readme():
     try:
         import pypandoc
-        rst = pypandoc.convert('README.md', 'rst')
+        rst = pypandoc.convert_file('README.md', 'rst')
         rst = rst.replace("\r","")
         return rst
-    except (OSError):
+    except (OSError, ImportError):
         print('If pandoc is not installed, just return the raw markdown text')
         with open('README.md') as f:
             return f.read()
