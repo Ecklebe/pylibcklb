@@ -1,7 +1,7 @@
 # The pylibcklb library 
 
 [![Python version](https://img.shields.io/pypi/v/pylibcklb.svg)](https://pypi.org/project/pylibcklb/)
-![License](https://img.shields.io/pypi/l/pylibcklb.svg)         
+[![License](https://img.shields.io/pypi/l/pylibcklb.svg)](https://github.com/Ecklebe/pylibcklb/blob/master/LICENSE.md)         
 [![PyPI](https://img.shields.io/pypi/pyversions/pylibcklb.svg)](https://pypi.org/project/pylibcklb/)
 [![Build Status](https://gitlab.ecklebe.de/open-source/python/pylibcklb/badges/master/build.svg)](https://gitlab.ecklebe.de/open-source/python/pylibcklb/commits/master) (mirroring, build and install on Linux)
 
