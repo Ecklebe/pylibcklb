@@ -34,7 +34,7 @@ def readme():
         rst = pypandoc.convert('README.md', 'rst')
         rst = rst.replace("\r","")
         return rst
-    except (OSError, ImportError):
+    except (OSError):
         print('If pandoc is not installed, just return the raw markdown text')
         with open('README.md') as f:
             return f.read()
