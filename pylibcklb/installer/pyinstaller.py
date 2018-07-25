@@ -35,8 +35,6 @@ import os
 import platform
 from subprocess import Popen
 from pylibcklb.metadata import PackageVariables
-from pylibcklb.ClassLibrary import cDebug
-Debug = cDebug(PackageVariables.DebugLevel)
 
 def BuildOnLinux(programm_name, version_number):
     cwd = os.getcwd()

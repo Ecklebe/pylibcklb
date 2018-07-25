@@ -32,11 +32,6 @@
 """
 The metadata is stored here. It can be used by any other module in this project this way
 """
-from pylibcklb.ClassLibrary import cDebug 
-
-class PackageVariables:
-
-    DebugLevel = cDebug.LEVEL_ZERO
 
 class GitRepository:
     """
