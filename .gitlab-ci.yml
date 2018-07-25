@@ -11,7 +11,7 @@ stages:
   - deploy
   
 before_script:
-    - sudo apt-get install pandoc
+    - pip install pypandoc
          
 run_unit_tests:
   stage: test
