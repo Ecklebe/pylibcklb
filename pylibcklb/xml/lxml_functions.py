@@ -1,7 +1,7 @@
 ## Lxml functions libary file for all functions related to lxml
 #
 # @file		    lxml_functions.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    05.11.2017
 # @version	    0.2.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n

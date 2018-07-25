@@ -1,7 +1,7 @@
 ## Function library file for my functions 
 #
 # @file		    FunctionLibrary.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    05.11.2017
 # @version	    0.3.0
 # @note		    This file includes functions as libary that i think are great for different projects.\n\n
@@ -36,13 +36,10 @@
 #
 import os  
 import sys
-from pylibcklb.ClassLibrary import cDebug 
 import fileinput
-from pylibcklb.metadata import PackageVariables
 from urllib.request import pathname2url # Python 3.x
 import subprocess
 import argparse
-Debug = cDebug(PackageVariables.DebugLevel)
 
 ## Documentation for a method to print to command line hello world and display the usage of the package
 def HelloWorld() -> None:
@@ -89,14 +86,12 @@ def print_failure_message(message) -> None:
 # @param value Value from xml string
 # @return Boolean extract from string
 def str2bool(value):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     return value.lower() in ("True", "true")
 
 ## Documentation of a method to load a file from a pyinstaller bundled exe
 # @note https://stackoverflow.com/questions/19669640/bundling-data-files-with-pyinstaller-2-1-and-meipass-error-onefile
 # @param relative_path The realtive path to the file
 def resource_path(relative_path):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
@@ -112,7 +107,6 @@ def resource_path(relative_path):
 # @param prefix The prefix that should be removed
 # @return String without postfix if the text and prefix are from type string, else text without changes
 def remove_prefix(text, prefix):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if ((type(text) is str) and (type(prefix) is str)):
         if not text.startswith(prefix):
             return text
@@ -126,7 +120,6 @@ def remove_prefix(text, prefix):
 # @param postfix The prefix that should be removed
 # @return String without postfix if the text and prefix are from type string, else text without changes
 def remove_postfix(text, postfix):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     if ((type(text) is str) and (type(postfix) is str)):
         if not text.endswith(postfix):
             return text
@@ -138,12 +131,12 @@ def remove_postfix(text, postfix):
 ## Documentation of a method that checks the string if there is a known prefix
 # @param text The text that should 
 # @param ListOfPrefixes List of the prefixes to search in
+# @param debug Parameter to get debug message
 # @return String with prefix if the there is a known prefix and None if no prefix
-def IsThereAKnownPrefix(text, ListOfPrefixes):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+def IsThereAKnownPrefix(text, ListOfPrefixes, debug=False):
     if type(text) is str:
         retValue = None
-        Debug.Print(Debug.LEVEL_FUNCTIONENTRY, ('Input text is: ' + text))
+        if debug: print('Input text is: ' + text)
         for i in range(len(ListOfPrefixes)):
             if text.startswith(ListOfPrefixes[i]): 
                 retValue = ListOfPrefixes[i]     
@@ -170,7 +163,6 @@ def IsThereAKnownPrefixThenRemoveIt(text, ListOfPrefixes):
 #   @param dir The directory to create
 #   @return The returned value is true to signalize that the directory is created
 def CreateDir(dir):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
     try:
         os.makedirs(os.path.dirname(dir), exist_ok=True )
     except OSError as e:
@@ -188,7 +180,6 @@ def CreateDir(dir):
 #   @param FileContent The content to save into the new file
 #   @param Hidden If the file should be a hidden file
 def CreateFile(Dir:str, file_name:str, FileContent:str, Hidden:bool=False):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
 
     import ctypes
     FILE_ATTRIBUTE_HIDDEN = 0x02
@@ -233,14 +224,14 @@ def CreateFile(Dir:str, file_name:str, FileContent:str, Hidden:bool=False):
 #   @param FileName The name of the file where the dict is placed
 #   @param DictName Name of the dict as string the method should search for
 #   @param Dict The dict that should be saved back
-def SaveChangesOfDictBack2File(FileDir:str, FileName:str, DictName:str, Dict:dict):
-    Debug.PrintFunctionName(Debug.LEVEL_FUNCTIONENTRY)
+#   @param debug Parameter to get debug message
+def SaveChangesOfDictBack2File(FileDir:str, FileName:str, DictName:str, Dict:dict, debug=False):
     dir = os.path.join(FileDir, FileName)
     # Safely read the input filename using 'with'
     with open(dir) as f:
         s = f.read()
         if DictName not in s:
-            Debug.Print(Debug.LEVEL_All, '"{DictName}" not found in {FileName}.'.format(**locals()))
+            if debug: print( '"{DictName}" not found in {FileName}.'.format(**locals()))
             return False
 
     ParameterValue = None
@@ -253,7 +244,7 @@ def SaveChangesOfDictBack2File(FileDir:str, FileName:str, DictName:str, Dict:dic
         new_string = str(Dict)
         # Safely write the changed content, if found in the file
         with open(dir, 'w') as f:
-            Debug.Print(Debug.LEVEL_All,'Changing "{old_string}" to "{new_string}" in {dir}'.format(**locals()))
+            if debug: print('Changing "{old_string}" to "{new_string}" in {dir}'.format(**locals()))
             s = s.replace(old_string, new_string)
             f.write(s)
         return True

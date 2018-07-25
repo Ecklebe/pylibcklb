@@ -1,7 +1,7 @@
 ## functions libary file for all functions related to open cv
 #
 # @file		    functions.py
-# @author	    Tobias Ecklebe efos@ecklebe.de
+# @author	    Tobias Ecklebe
 # @date		    12.02.2018
 # @version	    0.1.0
 # @note		    To use this file:  from pylibcklb.opencv34.functions import SomeClassOrFunction\n     

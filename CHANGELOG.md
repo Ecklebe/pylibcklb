@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.7.0] - 2018-07-25
+## Added 
+- new class to convert html files into jpg images
+- new prototype class too compare ontologies (not working at the moment)
+
 ## [1.6.0] - 2018-07-23
 ## Added 
 - new functions and classes to work with ontologies and owlready2
@@ -98,7 +103,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.6.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.7.0...master
+[1.7.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.6.1...v1.7.0
 [1.6.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.1...v1.6.0
 [1.5.1]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.0...v1.5.1
 [1.5.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.4.0...v1.5.0

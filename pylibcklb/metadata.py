@@ -32,12 +32,6 @@
 """
 The metadata is stored here. It can be used by any other module in this project this way
 """
-from pylibcklb.version import __version__
-from pylibcklb.ClassLibrary import cDebug 
-
-class PackageVariables:
-
-    DebugLevel = cDebug.LEVEL_ZERO
 
 class GitRepository:
     """
@@ -72,11 +66,6 @@ class General:
     project_description = 'The pylibcklb is a library of functions and classes created from me and were used in different other projects of me.'
     """
     A short description of the project
-    """
-
-    version_number = __version__
-    """
-    The current version of the program.
     """
 
     author_names = "Tobias Ecklebe"
@@ -141,11 +130,6 @@ class Variables:
     name = General.project_name
     """
     The name of the project on Pypi
-    """
-
-    version = General.version_number
-    """
-    The version of the project on pypi
     """
 
     description = General.project_description

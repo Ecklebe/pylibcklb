@@ -1,7 +1,7 @@
 ## Setup file for the pylibcklb package
 #
 # @file		    setup.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    02.11.2017
 # @version	    0.1.0
 # @bug          No bugs at the moment.
@@ -28,31 +28,24 @@ import os
 from setuptools import setup, find_packages
 from pylibcklb.metadata import Variables
 
-
-# @note Found at: https://gitlab.namibsun.net/namboy94/comunio-manager/blob/master/setup.py
 def readme():
-    """
-    Reads the readme file.
-
-    :return: the readme file as a string
-    """
     try:
-        # noinspection PyPackageRequirements
         import pypandoc
-        with open('README.md') as f:
-            # Convert markdown file to rst
-            markdown = f.read()
-            rst = pypandoc.convert(markdown, 'rst', format='md')
-            return rst
+        rst = pypandoc.convert('README.md', 'rst')
+        rst = rst.replace("\r","")
+        return rst
     except (OSError, ImportError):
-        # If pandoc is not installed, just return the raw markdown text
+        print('If pandoc is not installed, just return the raw markdown text')
         with open('README.md') as f:
             return f.read()
 
-exec(open('pylibcklb/version.py').read())
+if os.environ.get('CI_COMMIT_TAG'):
+    version = os.environ['CI_COMMIT_TAG'][1:]
+else:
+    version = os.environ['CI_JOB_ID']
 
 setup(name=Variables.name,
-      version=__version__,
+      version=version,
       description=Variables.description,
       long_description=readme(),
       classifiers=Variables.classifiers,

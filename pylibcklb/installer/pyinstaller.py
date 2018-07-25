@@ -1,7 +1,7 @@
 ## Library of classes for pyinstaller  
 #
 # @file		    pyinstaller.py
-# @author	    Tobias Ecklebe tobias.ecklebe@outlook.de
+# @author	    Tobias Ecklebe
 # @date		    14.11.2017
 # @version	    0.1.0
 # @note		    This file includes classes as libary that i think are great for different projects.\n\n
@@ -35,8 +35,6 @@ import os
 import platform
 from subprocess import Popen
 from pylibcklb.metadata import PackageVariables
-from pylibcklb.ClassLibrary import cDebug
-Debug = cDebug(PackageVariables.DebugLevel)
 
 def BuildOnLinux(programm_name, version_number):
     cwd = os.getcwd()
