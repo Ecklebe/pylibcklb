@@ -1,9 +1,9 @@
 # The pylibcklb library 
 
-[![version](https://img.shields.io/pypi/v/pylibcklb.svg)]()
-[![license](https://img.shields.io/pypi/l/pylibcklb.svg)]()         
-[![PyPI](https://img.shields.io/pypi/pyversions/pylibcklb.svg)]()
-[![build status](https://gitlab.ecklebe.de/open-source/python/pylibcklb/badges/master/build.svg)](https://gitlab.ecklebe.de/open-source/python/pylibcklb/commits/master) (mirroring, build and install on Linux)
+[![Python version](https://img.shields.io/pypi/v/pylibcklb.svg)](https://pypi.org/project/pylibcklb/)
+![License](https://img.shields.io/pypi/l/pylibcklb.svg)         
+[![PyPI](https://img.shields.io/pypi/pyversions/pylibcklb.svg)](https://pypi.org/project/pylibcklb/)
+[![Build Status](https://gitlab.ecklebe.de/open-source/python/pylibcklb/badges/master/build.svg)](https://gitlab.ecklebe.de/open-source/python/pylibcklb/commits/master) (mirroring, build and install on Linux)
 
 The pylibcklb library an package of different functions and classes for programming in python.
 
@@ -20,13 +20,13 @@ To install the package to the python packages you need **pip** the package insta
 
 ```batch
 pip install https://github.com/Ecklebe/pylibcklb/archive/master.zip
-
+```
 or 
-
+```batch
 pip install pylibcklb
 ```
 
-## Installation
+## Uninstallation
 
  1. Call the command line under windows as admin
  2. Type the following to command line and that's is
@@ -63,7 +63,5 @@ Output of the command line:
     >>> Hello world i am the pylibcklb package
 	
 ## Changes
-For the changes of each version see the [CHANGELOG.md][CHANGELOG] in this folder.
-
-[CHANGELOG]: ./CHANGELOG.md
+For the changes of each version see the [CHANGELOG.md](https://github.com/Ecklebe/pylibcklb/blob/master/CHANGELOG.md) in this folder.
 
