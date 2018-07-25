@@ -9,6 +9,9 @@ stages:
   - install   
   - mirror
   - deploy
+  
+before_script:
+    - sudo apt-get install pandoc
          
 run_unit_tests:
   stage: test
@@ -40,7 +43,6 @@ pypi_dist:
   only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags) v1.0.0
   script:
-    - sudo apt-get install pandoc
     - echo "[server-login]" >> ~/.pypirc
     - echo "username=" ${PYPI_USER} >> ~/.pypirc
     - echo "password=" ${PYPI_PASSWORD} >> ~/.pypirc
