@@ -12,7 +12,7 @@ stages:
   
 before_script:
     - PANDOC_VER=2.1.1
-    - cd /opt && wget https://github.com/jgm/pandoc/releases/download/$PANDOC_VER/pandoc-$PANDOC_VER-1-amd64.deb
+    - wget https://github.com/jgm/pandoc/releases/download/$PANDOC_VER/pandoc-$PANDOC_VER-1-amd64.deb
     - dpkg -i pandoc-$PANDOC_VER-1-amd64.deb
          
 run_unit_tests:
