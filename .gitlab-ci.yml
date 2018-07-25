@@ -11,7 +11,9 @@ stages:
   - deploy
   
 before_script:
-    - apt-get install python3-pypandoc
+    - PANDOC_VER=2.1.1
+    - cd /opt && wget https://github.com/jgm/pandoc/releases/download/$PANDOC_VER/pandoc-$PANDOC_VER-1-amd64.deb
+    - dpkg -i pandoc-$PANDOC_VER-1-amd64.deb
          
 run_unit_tests:
   stage: test
