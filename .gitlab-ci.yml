@@ -1,4 +1,4 @@
-image: python:3.6
+image: python:3.6.6-windowsservercore-1709
 
 variables:
     PYPI_USER: SECURE
@@ -11,7 +11,6 @@ stages:
   - deploy
   
 before_script:
-    - apt-get install pandoc
     - pip install pypandoc
          
 run_unit_tests:
