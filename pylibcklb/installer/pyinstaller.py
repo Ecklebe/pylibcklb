@@ -34,7 +34,6 @@
 import os
 import platform
 from subprocess import Popen
-from pylibcklb.metadata import PackageVariables
 
 def BuildOnLinux(programm_name, version_number):
     cwd = os.getcwd()
