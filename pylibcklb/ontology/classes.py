@@ -34,6 +34,44 @@ import os
 from multiprocessing import Pool
 from pylibcklb.ClassLibrary import cDebug
 
+class ontology_head(object):
+
+    def __init__(self, dir_name:str=None, iri:str='') -> None:
+        self.ontology = OFL.get_ontology_from_database(iri, dir_name)
+
+    def get_subclass_instances_as_list(self, class_name:str, default_list_item:str=''):
+        type_from_onto = self.get_subclass_instances(class_name)
+        type_list: list = []
+        if len(type_from_onto) > 0:
+            for type_onto in type_from_onto:    
+                type_list.append(OFL.get_onto_object_name(type_onto))
+        else:
+            if default_list_item != '':
+                type_list.append(default_list_item)
+        return type_list
+
+    def get_subclass_instances(self, class_name:str):
+        search_result = self.ontology.search(iri = ('*'+class_name))
+        return self.ontology.search(type  = search_result)
+
+class ontology_object(object):
+
+    def __init__(self, onto_object) -> None:
+        self.onto_object = onto_object
+        if onto_object is not None:
+            self.object_properties= self.get_dict_of_object_properties(onto_object)
+            self.name = onto_object.name
+        else:
+            self.object_properties= None
+            self.name = None
+
+    def get_dict_of_object_properties(self, onto_object) -> dict:
+        ret_dict: dict = dict()
+        for prop in onto_object.get_properties(): 
+            for value in prop[onto_object]: 
+                ret_dict[prop.python_name] = value
+        return ret_dict
+
 class convert_owl2sqlite3(cDebug):
 
     def __init__(self, debug_level:int=cDebug.LEVEL_ZERO, source_dir:str='', db_dir:str=''):
