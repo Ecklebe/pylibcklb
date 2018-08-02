@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+## [1.8.0] - 2018-08-02
+## Configured 
+- add imgkit to install_requires
+- delete old version file, the version is now controlles by git tags 
+- move converting function for html to jpg to own submodule 
+- modifiy the function get_list_of_files so that the returned list is only with the given filetype 
+
+## Added 
+- add class to work with ontologies that loads owl file and has functions to get subclass instances
+- add submodule visualization with functions to work on images and functions to plot data 
+
 ## [1.7.0] - 2018-07-25
 ## Added 
 - new class to convert html files into jpg images
@@ -103,7 +114,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Init commit and push of different elements to new repository
 
-[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.7.0...master
+[Unreleased]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.8.0...master
+[1.8.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.7.0...v1.8.0
 [1.7.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.6.1...v1.7.0
 [1.6.0]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.1...v1.6.0
 [1.5.1]: https://gitlab.ecklebe.de/open-source/pylibcklb/compare/v1.5.0...v1.5.1
