@@ -35,7 +35,6 @@ import os
 import sys
 import traceback
 import pylibcklb.FunctionLibrary as FL
-import imgkit
 from multiprocessing import Pool
 
 ## Documentation for a class that handles the debug prints at the console
@@ -292,33 +291,3 @@ class cObserver(object):
     # @param model The pointer the data model
     def AddModel(self, model):
         self.model = model
-
-class convert_html2jpg(cDebug):
-
-    def __init__(self, debug_level:int=cDebug.LEVEL_DEVELOPMENT, source_dir:str='', dest_dir:str='', exception_text:str='', options = {'width':'2800'}):
-        cDebug.__init__(self, Level=debug_level)
-        self.source             = source_dir
-        self.dest_dir           = dest_dir
-        self.options            = options
-        self.exception_text     = exception_text
-    
-        if not os.path.isdir(self.dest_dir):
-            print(self.dest_dir)
-            FL.CreateDir(self.dest_dir)
-
-    def convert_worker(self, filename_origin):  
-        img_path = os.path.join(self.dest_dir, '.'.join((os.path.splitext(os.path.basename(filename_origin))[0], "jpg")))
-        if not os.path.isfile(img_path):
-            FL.CreateDir(img_path)
-            self.Print(cDebug.LEVEL_DEVELOPMENT,'Convert html to jpg: '+ filename_origin +' to '+img_path) 
-            imgkit.from_file(filename_origin, img_path, self.options)   
-
-    def process(self):
-        pool = Pool()
-        filelist = []
-        for file in FL.get_list_of_files(self.source,'html'):
-            if not self.exception_text in file:
-                filelist.append(file)
-        pool.map(self.convert_worker, filelist)
-        pool.close() 
-        pool.join()
