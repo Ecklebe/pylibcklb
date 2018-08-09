@@ -36,8 +36,10 @@ from pylibcklb.ClassLibrary import cDebug
 
 class ontology_head(object):
 
-    def __init__(self, dir_name:str=None, iri:str='') -> None:
-        self.ontology = OFL.get_ontology_from_database(iri, dir_name)
+    def __init__(self, dir_name:str=None, iri:str='', exclusive=True) -> None:
+        self.iri        = iri
+        self.dir_name   = dir_name
+        self.exclusive  = exclusive
 
     def get_subclass_instances_as_list(self, class_name:str, default_list_item:str=''):
         type_from_onto = self.get_subclass_instances(class_name)
@@ -51,8 +53,9 @@ class ontology_head(object):
         return type_list
 
     def get_subclass_instances(self, class_name:str):
-        search_result = self.ontology.search(iri = ('*'+class_name))
-        return self.ontology.search(type  = search_result)
+        ontology = OFL.get_ontology_from_database(self.iri, self.dir_name, exclusive=self.exclusive)
+        search_result = ontology.search(iri = ('*'+class_name))
+        return ontology.search(type  = search_result)
 
 class ontology_object(object):
 
@@ -74,12 +77,13 @@ class ontology_object(object):
 
 class convert_owl2sqlite3(cDebug):
 
-    def __init__(self, debug_level:int=cDebug.LEVEL_ZERO, source_dir:str='', db_dir:str=''):
+    def __init__(self, debug_level:int=cDebug.LEVEL_ZERO, source_dir:str='', db_dir:str='', remove_source:bool=False):
         cDebug.__init__(self, Level=debug_level)
         self.source             = source_dir
         self.db_dir             = db_dir
         self.results            = []
         self.converted_fils     = []
+        self.remove_source      = remove_source
 
         if not os.path.isdir(self.db_dir):
             ret = FL.CreateDir(self.db_dir)    
@@ -92,13 +96,12 @@ class convert_owl2sqlite3(cDebug):
             my_world.set_backend(filename = db_path)
             my_world.get_ontology('file://'+filename).load()
             my_world.save()
+            if self.remove_source:
+                os.remove(filename)
         return db_path
 
     def process(self):
-        pool = Pool()
-        self.results = pool.map(self.convert_worker,  FL.get_list_of_files(self.source, 'owl'))
-        pool.close() 
-        pool.join()
+        self.results = FL.imap_func_bar(self.convert_worker,  list(FL.get_list_of_files(self.source, 'owl')), 'files')
 
     def get_list_of_owl_databases(self):
         return self.results
