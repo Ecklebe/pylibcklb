@@ -112,7 +112,7 @@ class Variables:
     The list trove classifiers applicable to this project
     """
 
-    install_requires = ["lxml", "markdown2", "numpy", "pyinstaller", "colorama", "Owlready2", "imgkit"]
+    install_requires = ["lxml", "markdown2", "numpy", "pyinstaller", "colorama", "Owlready2", "imgkit", "tqdm"]
     """
     Python Packaging Index dependencies
     """

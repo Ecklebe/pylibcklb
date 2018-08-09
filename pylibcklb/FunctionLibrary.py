@@ -40,6 +40,8 @@ import fileinput
 from urllib.request import pathname2url # Python 3.x
 import subprocess
 import argparse
+from multiprocessing import Pool
+import tqdm
 
 ## Documentation for a method to print to command line hello world and display the usage of the package
 def HelloWorld() -> None:
@@ -307,3 +309,19 @@ def is_dir_existing(dirname):
 
 def get_list_of_files(folder:str, Filetype:str='txt') -> list:
   return (os.path.join(folder, f) for f in os.listdir(folder) if f.endswith(Filetype))
+
+def map_func(func, args):
+    pool = Pool()
+    res_list = []
+    res_list = pool.map(func, args)
+    pool.close() 
+    pool.join()
+    return res_list
+
+def imap_func_bar(func, args, unit_name = ''):
+    res_list = []
+    with Pool() as p:
+        res_list = list(tqdm.tqdm(p.imap(func, args), total=len(args), unit=unit_name))
+    p.close()
+    p.join()
+    return res_list
