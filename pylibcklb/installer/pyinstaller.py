@@ -52,7 +52,8 @@ def BuildOnLinux(programm_name, version_number):
         file_destination = os.path.join(distpath, file_name)
         if os.path.exists(file_destination): 
             os.remove(file_destination)
-        os.rename(file_origin, file_destination)
+        if os.path.exists(file_origin):
+            os.rename(file_origin, file_destination)
         os.chdir(cwd)
     else:
         print('Path for deployment with spec file doesent exists!')
@@ -76,7 +77,8 @@ def BuildOnWindows(programm_name, version_number):
         file_destination = os.path.join(distpath, file_name)
         if os.path.exists(file_destination): 
             os.remove(file_destination)
-        os.rename(file_origin, file_destination)
+        if os.path.exists(file_origin):
+            os.rename(file_origin, file_destination)
         os.chdir(cwd)
     else:
         print('Path for deployment with spec file doesent exists!')

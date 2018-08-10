@@ -42,7 +42,10 @@ def readme():
 if os.environ.get('CI_COMMIT_TAG'):
     version = os.environ['CI_COMMIT_TAG'][1:]
 else:
-    version = os.environ['CI_JOB_ID']
+    if os.environ.get('CI_JOB_ID'):
+        version = os.environ['CI_JOB_ID']
+    else:
+        version = '1.8.0-dev'
 
 setup(name=Variables.name,
       version=version,
