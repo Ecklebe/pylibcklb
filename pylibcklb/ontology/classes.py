@@ -62,13 +62,15 @@ class ontology_object(object):
     def __init__(self, onto_object) -> None:
         self.onto_object = onto_object
         if onto_object is not None:
-            self.object_properties= self.get_dict_of_object_properties(onto_object)
+            self.properties= self.get_dict_of_properties(onto_object)
             self.name = onto_object.name
+            self.class_name = str(onto_object.is_a[0]).split('.')[1]
         else:
             self.object_properties= None
             self.name = None
+            self.class_name = None
 
-    def get_dict_of_object_properties(self, onto_object) -> dict:
+    def get_dict_of_properties(self, onto_object) -> dict:
         ret_dict: dict = dict()
         for prop in onto_object.get_properties(): 
             for value in prop[onto_object]: 
