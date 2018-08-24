@@ -45,7 +45,8 @@ else:
     if os.environ.get('CI_JOB_ID'):
         version = os.environ['CI_JOB_ID']
     else:
-        version = '1.8.0-dev'
+        exec(open('pylibcklb/version.py').read())
+        version= __version__
 
 setup(name=Variables.name,
       version=version,
